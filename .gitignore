@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/inspectionProfiles/
+node_modules/bignumber.js/
+node_modules/mysql/
+node_modules/sqlstring/
+public/images/
+public/javascripts/
