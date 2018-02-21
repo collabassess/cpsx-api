@@ -38,7 +38,6 @@ router.post('/getRoom', function(req, res, next) {
     collab_connect(collab);
     var curr_user = req.body.curr_user;
     console.log(curr_user);
-    var room = 'room';
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?'
     collab.query(query_statment,[curr_user,curr_user],(err,rows)=>{
         console.log(rows);
@@ -47,19 +46,19 @@ router.post('/getRoom', function(req, res, next) {
             throw err;
         }else{
             rows.forEach( (row) =>{
-                room = room+""+row.session_id+row.course_id
+                var room = "room"+row.session_id+row.course_id;
+                collab_destroy(collab);
+                res.send(room);
             });
         }
 
     });
-    collab_destroy(collab);
-    res.send(room);
+
 });
 
 router.get('/getRoom', function(req, res, next) {
     collab_connect(collab);
     var curr_user = req.query.curr_user;
-    var room = 'room';
     console.log(curr_user);
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?'
     collab.query(query_statment,[curr_user,curr_user],(err,rows)=>{
@@ -71,13 +70,14 @@ router.get('/getRoom', function(req, res, next) {
             console.log("rows: "+rows);
             rows.forEach( (row) =>{
 
-                room = room+""+row.session_id+row.course_id
+                var room = "room"+row.session_id+row.course_id;
+                collab_destroy(collab);
+                res.send(room);
             });
         }
 
     });
-    collab_destroy(collab);
-    res.send(room);
+
 });
 
 module.exports = router;
