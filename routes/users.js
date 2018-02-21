@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var mysql = require('../db_module/mysql');
+var mysql = require('../db_module/cpsx_db');
 
 
 /* POST users room. */
