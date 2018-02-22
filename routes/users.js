@@ -6,7 +6,6 @@ var mysql = require('../db_module/cpsx_db');
 
 /* POST users room. */
 router.post('/getRoom', function(req, res, next) {
-    collab_connect(collab);
     var curr_user = req.body.curr_user;
     console.log(curr_user);
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?'
@@ -30,7 +29,6 @@ router.post('/getRoom', function(req, res, next) {
 });
 
 router.get('/getRoom', function(req, res, next) {
-    collab_connect(collab);
     var curr_user = req.query.curr_user;
     console.log(curr_user);
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?'
