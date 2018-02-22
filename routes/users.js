@@ -9,7 +9,7 @@ router.post('/getRoom', function(req, res, next) {
     var curr_user = req.body.curr_user;
     console.log(curr_user);
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?'
-    mysql.getConnection(function(err, conn){
+    mysql(function(err, conn){
         conn.query(query_statment,[curr_user,curr_user],(err,rows)=>{
             console.log(rows);
             if(err){
@@ -32,7 +32,7 @@ router.get('/getRoom', function(req, res, next) {
     var curr_user = req.query.curr_user;
     console.log(curr_user);
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?'
-    mysql.getConnection(function(err, conn){
+    mysql(function(err, conn){
         conn.query(query_statment,[curr_user,curr_user],(err,rows)=>{
             console.log(rows);
             if(err){
