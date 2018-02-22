@@ -5,7 +5,7 @@ var mysql = require('../db_module/cpsx_db').pool;
 
 
 /* POST users room. */
-router.post('/getRoom', function(req, res, next) {
+router.post('/getRoom', function(req, res) {
     var curr_user = req.body.curr_user;
     console.log(curr_user);
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?';
@@ -22,7 +22,7 @@ router.post('/getRoom', function(req, res, next) {
                     } else {
                         rows.forEach((row) => {
                             var room = "room" + row.session_id + row.course_id;
-                            conn.release()
+                            conn.release();
                             res.send(room);
                         });
                     }
@@ -34,7 +34,7 @@ router.post('/getRoom', function(req, res, next) {
 
 });
 
-router.get('/getRoom', function(req, res, next) {
+router.get('/getRoom', function(req, res) {
     console.log("here1")
     var curr_user = req.query.curr_user;
     console.log(curr_user);
@@ -54,7 +54,7 @@ router.get('/getRoom', function(req, res, next) {
                 } else {
                     rows.forEach((row) => {
                         var room = "room" + row.session_id + row.course_id;
-                        conn.release()
+                        conn.release();
                         res.send(room);
                     });
                 }
