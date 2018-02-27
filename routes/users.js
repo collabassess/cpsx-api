@@ -114,8 +114,9 @@ router.post("/initializeRoom",function (req,res) {
                     res.send(room_value);
                 });
             });
+        }else{
+            res.send(room_value);
         }
-        res.send(room_value);
     });
 });
 
