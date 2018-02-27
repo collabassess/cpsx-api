@@ -104,19 +104,21 @@ router.post('/getRoom', function(req, res) {
 
 router.post("/initializeRoom",function (req,res) {
     var curr_user = req.body.curr_user;
+    //if user is not present
     getUserRoom(curr_user,function (room_value) {
         var final_room = room_value;
         if(room_value === "NaN"){
             upsertRoomUser(curr_user,function (response) {
                 final_room = response;
-
-                getUserRoom(curr_user,function (room_value) {
-                    res.send(room_value);
-                });
             });
         }else{
             res.send(room_value);
         }
+    });
+
+    //if user is present
+    getUserRoom(curr_user,function (room_value) {
+        res.send(room_value);
     });
 });
 
