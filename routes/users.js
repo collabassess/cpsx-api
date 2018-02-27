@@ -17,12 +17,13 @@ function getUserRoom(curr_user){
                 if (err) {
                     console.log(err);
                     throw err;
-                } else {
+                } else if(rows.length>0){
                     rows.forEach((row) => {
                         var room = "room" + row.session_id + row.course_id;
                         conn.release();
                         return room;
                     });
+                }else{
                     conn.release();
                     return "NaN";
                 }
