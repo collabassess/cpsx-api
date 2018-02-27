@@ -109,9 +109,13 @@ router.post("/initializeRoom",function (req,res) {
         if(room_value === "NaN"){
             upsertRoomUser(curr_user,function (response) {
                 final_room = response;
+
+                getUserRoom(curr_user,function (room_value) {
+                    res.send(room_value);
+                });
             });
         }
-        res.send(final_room);
+        res.send(room_value);
     });
 });
 
