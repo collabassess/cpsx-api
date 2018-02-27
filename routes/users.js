@@ -13,7 +13,7 @@ function getUserRoom(curr_user){
         }
         else{
             conn.query(query_statment, [curr_user, curr_user], (err, rows) => {
-                console.log(rows[0].length);
+                console.log("rows length:"+rows.length);
                 if (err) {
                     console.log(err);
                     throw err;
@@ -37,6 +37,7 @@ router.post('/getRoom', function(req, res) {
     var curr_user = req.body.curr_user;
     console.log(curr_user);
     var room = getUserRoom(curr_user);
+    console.log(room);
     if(room!=="NaN"){
         res.send(room);
     }else{
