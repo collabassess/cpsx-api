@@ -19,7 +19,7 @@ function getUserRoom(curr_user,callback){
                     throw err;
                 } else {
                     rows.forEach((row) => {
-                        room = "room" + row.session_id + row.course_id;
+                        room = "room" +"_"+ row.session_id +"_"+ row.course_id;
                         conn.release();
                         callback(room);
                     });
