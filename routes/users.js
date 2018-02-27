@@ -14,20 +14,21 @@ function getUserRoom(curr_user){
         else{
             conn.query(query_statment, [curr_user, curr_user], (err, rows,fields) => {
                 console.log("rows length:");
-                console.log(rows.length);
+                // console.log(rows.length);
                 if (err) {
                     console.log(err);
                     throw err;
-                }else if(rows.length>0){
+                }else{
                     rows.forEach((row) => {
                         var room = "room" + row.session_id + row.course_id;
                         conn.release();
                         return room;
                     });
-                }else{
-                    conn.release();
-                    return "NaN";
                 }
+                // else{
+                //     conn.release();
+                //     return "NaN";
+                // }
             });
         }
 
