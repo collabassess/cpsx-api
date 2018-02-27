@@ -14,7 +14,7 @@ function getUserRoom(curr_user){
         else{
             conn.query(query_statment, [curr_user, curr_user], (err, rows,fields) => {
                 console.log("rows length:");
-                // console.log(rows.length);
+                console.log(rows.length);
                 if (err) {
                     console.log(err);
                     throw err;
