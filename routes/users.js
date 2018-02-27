@@ -51,6 +51,9 @@ function upsertRoomUser(curr_user,callback) {
 
                     conn.query("INSERT INTO user_groups(course_id,user1)\n"+
                                         " VALUES (?,?)", ['1',curr_user]);
+
+                    conn.release();
+                    callback("new room");
                 }else{
                     console.log("old row updated");
                     rows.forEach((row) => {
