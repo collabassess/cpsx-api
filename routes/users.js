@@ -107,6 +107,9 @@ router.post("/initializeRoom",function (req,res) {
     //if user is not present
     getUserRoom(curr_user,function (room_value) {
         var final_room = room_value;
+
+        console.log(final_room);
+
         if(room_value === "NaN"){
             upsertRoomUser(curr_user,function (response) {
                 final_room = response;
