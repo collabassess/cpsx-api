@@ -5,7 +5,7 @@ var mysql = require('../db_module/cpsx_db').pool;
 
 
 function getUserRoom(curr_user,callback){
-    var room = "";
+    var room = '';
     query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?';
     mysql.getConnection(function (err, conn) {
         if(err){
@@ -17,12 +17,12 @@ function getUserRoom(curr_user,callback){
                 if (err) {
                     console.log("error: ", err);
                     throw err;
-                } else {
+                } else if(rows.length >0) {
                     rows.forEach((row) => {
                         room = "room" +"_"+ row.session_id +"_"+ row.course_id;
-                        conn.release();
                         callback(room);
                     });
+                }else{
                     callback("NaN");
                 }
             });
@@ -33,29 +33,29 @@ function getUserRoom(curr_user,callback){
 function upsertRoomUser(curr_user,callback) {
     query_statment = 'SELECT * from user_groups\n' +
         '                           WHERE user1 IS NULL OR user2 IS NULL';
-    console.log("here1");
+    console.log("upsert function: step 1");
     mysql.getConnection(function (err, conn) {
         if(err){
             console.log("connection failed");
             throw err;
         }
         else {
-            console.log("here2");
+            console.log("upsert function: step 2");
             conn.query(query_statment, (err, rows) => {
-                console.log(rows);
+                console.log("upsert function: row:"+rows);
                 if (err) {
                     console.log("error:", err);
                     throw err;
                 }else if(rows.length == 0){
-                    console.log("new row will be created");
+                    console.log("upsert function: step 3: new row will be created");
 
                     conn.query("INSERT INTO user_groups(course_id,user1)\n"+
                                         " VALUES (?,?)", ['1',curr_user]);
 
                     conn.release();
-                    callback("new room");
+                    callback("init");
                 }else{
-                    console.log("old row updated");
+                    console.log("upsert function: step 3: old row updated");
                     rows.forEach((row) => {
                         session_id = row.session_id;
                         course_id = row.course_id;
@@ -83,8 +83,7 @@ function upsertRoomUser(curr_user,callback) {
                                 });
                         }
                         conn.release();
-                        temp_room = "room" + session_id + course_id;
-                        callback(temp_room);
+                        callback("init");
                     });
 
                 }
@@ -104,25 +103,22 @@ router.post('/getRoom', function(req, res) {
 
 router.post("/initializeRoom",function (req,res) {
     var curr_user = req.body.curr_user;
-    //if user is not present
+    var final_room ="dsaas";
     getUserRoom(curr_user,function (room_value) {
-        var final_room = room_value;
-
-        console.log(final_room);
-
+        console.log("Entered first getUserRoom function"+room_value);
         if(room_value === "NaN"){
+            console.log("got inside this if condition: room value is NaN, upserting");
             upsertRoomUser(curr_user,function (response) {
-                final_room = response;
+                console.log("upsert:"+response);
+                getUserRoom(curr_user,function (room_value) {
+                    final_room = room_value;
+                    console.log(final_room);
+                    console.log("final statement");
+                });
             });
-        }else{
-            res.send(room_value);
         }
     });
 
-    //if user is present
-    getUserRoom(curr_user,function (room_value) {
-        res.send(room_value);
-    });
 });
 
 module.exports = router;
