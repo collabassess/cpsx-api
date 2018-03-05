@@ -2,7 +2,7 @@ const mysql = require('mysql');
 
 // First you need to create a connection to the db
 var pool = mysql.createPool({
-    host: 'localhost',
+    host: '54.156.197.224',
     user: 'root',
     password: 'edx',
     database: 'collab_assess'

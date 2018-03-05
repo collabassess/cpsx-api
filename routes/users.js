@@ -42,7 +42,6 @@ function upsertRoomUser(curr_user,callback) {
         else {
             console.log("upsert function: step 2");
             conn.query(query_statment, (err, rows) => {
-                console.log("upsert function: row:"+rows);
                 if (err) {
                     console.log("error:", err);
                     throw err;
@@ -114,8 +113,11 @@ router.post("/initializeRoom",function (req,res) {
                     final_room = room_value;
                     console.log(final_room);
                     console.log("final statement");
+                    res.send(final_room);
                 });
             });
+        }else{
+            res.send(room_value);
         }
     });
 
