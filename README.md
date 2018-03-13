@@ -7,4 +7,4 @@ current schema:
 
 flow diagram of cpsxblock
 
-![flow chart](images/cpsxflow.pmg)
+![flow chart](images/cpsxflow.png)
