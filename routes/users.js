@@ -52,7 +52,7 @@ function returnUserPool(callback) {
         if(err){
             console.log("connection failed");
         }else{
-            conn.query(query_statement,[curr_user],(err,rows) => {
+            conn.query(query_statement,(err,rows) => {
                 if (err) {
                     callback(0);
                 }else if(rows.length > 0){

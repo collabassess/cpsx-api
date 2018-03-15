@@ -69,9 +69,11 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+            <state relative-caret-position="369">
+              <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
               <folding>
+                <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+                <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
                 <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
                 <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
               </folding>
@@ -250,12 +252,12 @@
       <workItem from="1519672317253" duration="12157000" />
       <workItem from="1520270006329" duration="4693000" />
       <workItem from="1520528293164" duration="760000" />
-      <workItem from="1520884912498" duration="7727000" />
+      <workItem from="1520884912498" duration="7824000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38501000" />
+    <option name="totallyTimeSpent" value="38598000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -318,6 +320,8 @@
         <state relative-caret-position="2508">
           <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
           <folding>
+            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
           </folding>
@@ -409,6 +413,8 @@
         <state relative-caret-position="2508">
           <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
           <folding>
+            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
           </folding>
@@ -468,6 +474,8 @@
         <state relative-caret-position="2332">
           <caret line="106" column="69" lean-forward="false" selection-start-line="106" selection-start-column="69" selection-end-line="106" selection-end-column="69" />
           <folding>
+            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
           </folding>
@@ -527,6 +535,8 @@
         <state relative-caret-position="154">
           <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
+            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
           </folding>
@@ -554,6 +564,8 @@
         <state relative-caret-position="44">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
+            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
           </folding>
@@ -657,9 +669,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        <state relative-caret-position="369">
+          <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
           <folding>
+            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
           </folding>
