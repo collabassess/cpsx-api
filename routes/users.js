@@ -14,9 +14,12 @@ function addToUserPool(user, callback) {
             callback(false);
         }else{
             conn.query(query_statement, function (err, result) {
-                if (err) callback(false);
-                console.log("1 record inserted/updated");
-                callback(true);
+                if (err) {
+                    callback(false);
+                }else{
+                    console.log("1 record inserted/updated");
+                    callback(true);
+                }
             });
         }
     });
