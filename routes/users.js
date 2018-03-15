@@ -15,8 +15,10 @@ function addToUserPool(user, callback) {
         }else{
             conn.query(query_statement, function (err, result) {
                 if (err) {
+                    console.log(err);
                     callback(false);
                 }else{
+                    console.log(result);
                     console.log("1 record inserted/updated");
                     callback(true);
                 }
