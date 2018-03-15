@@ -6,14 +6,13 @@ var mysql = require('../db_module/cpsx_db').pool;
 
 //add users to user_pool(user_status table)
 function addToUserPool(user, callback) {
-    var query_statement = 'INSERT INTO user_status(user_id) values(?)' +
-        'ON DUPLICATE KEY UPDATE status="online", last_online=Now(), grouped=False';
+    var query_statement = 'INSERT INTO user_status(user_id) values(?) ON DUPLICATE KEY UPDATE status="online", last_online=Now(), grouped=False';
     mysql.getConnection(function (err,conn) {
         if(err){
             console.log("connection failed");
             callback(false);
         }else{
-            conn.query(query_statement, function (err, result) {
+            conn.query(query_statement,[user], function (err, result) {
                 if (err) {
                     console.log(err);
                     callback(false);
