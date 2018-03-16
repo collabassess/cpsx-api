@@ -45,6 +45,26 @@ function updateUserPoolAsGrouped(curr_user,callback) {
     });
 }
 
+//remove user from user_pool online; In user_status table, turn the status to offline
+function removeFromUserPool(curr_user,callback) {
+    var query_statement = 'update user_status set status="offline" where user_id=? AND status="online"';
+    mysql.getConnection(function (err,conn) {
+        if(err){
+            console.log("connection failed");
+        }else{
+            conn.query(query_statement,[curr_user],(err,result) => {
+                if (err) {
+                    callback(false);
+                }else{
+                    console.log(result.affectedRows + " record(s) updated");
+                    callback(true);
+                }
+            });
+        }
+    });
+}
+
+
 //return available users in user_pool(user_status table), who are available to be connected
 function returnUserPool(callback) {
     var query_statement = 'select * from user_status where grouped=0 AND status="online"';
@@ -97,7 +117,7 @@ router.post('/addToUserPool',function (req,res) {
 });
 
 
-router.post('/removeFromUserPool',function (req,res) {
+router.post('/UserPoolToGrouped',function (req,res) {
     var curr_user = req.body.curr_user;
     updateUserPoolAsGrouped(curr_user,function (result) {
         if(result){
@@ -108,6 +128,16 @@ router.post('/removeFromUserPool',function (req,res) {
     });
 });
 
+router.post('/UserPoolToOffline',function (req,res) {
+    var curr_user = req.body.curr_user;
+    removeFromUserPool(curr_user,function (result) {
+        if(result){
+            res.send("success");
+        }else{
+            res.send("failure");
+        }
+    });
+});
 
 router.post('/getUserPool',function (req,res) {
 
