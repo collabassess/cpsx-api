@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e55b5b6-4ea6-4072-95cf-324c4309149b" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/routes/onlinePool.js" />
+      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -16,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="183">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -59,23 +61,42 @@
       <file leaf-file-name="events.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sql queries/events.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+            <state relative-caret-position="418">
+              <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+            <state relative-caret-position="308">
+              <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
+                <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+                <element signature="e#3567#3698#0" expanded="false" />
+                <element signature="e#3751#4522#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="onlinePool.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
                 <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
-                <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-                <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+                <element signature="n#!!block;n#returnUserPool#0" expanded="false" />
+                <element signature="n#!!block;n#updateLastOnline#0" expanded="false" />
+                <element signature="e#2917#3127#0" expanded="false" />
+                <element signature="e#3185#3405#0" expanded="false" />
+                <element signature="e#3456#3574#0" expanded="false" />
+                <element signature="e#3637#3850#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -126,7 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -134,7 +154,9 @@
         <option value="$PROJECT_DIR$/db_module/cpsx_db.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/sql queries/events.sql" />
+        <option value="$PROJECT_DIR$/routes/onlinePool.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -252,12 +274,12 @@
       <workItem from="1519672317253" duration="12157000" />
       <workItem from="1520270006329" duration="4693000" />
       <workItem from="1520528293164" duration="760000" />
-      <workItem from="1520884912498" duration="7824000" />
+      <workItem from="1520884912498" duration="8794000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38598000" />
+    <option name="totallyTimeSpent" value="39568000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -294,7 +316,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -320,10 +342,10 @@
         <state relative-caret-position="2508">
           <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
           <folding>
-            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
-            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+            <element signature="e#3567#3698#0" expanded="false" />
+            <element signature="e#3751#4522#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -413,10 +435,10 @@
         <state relative-caret-position="2508">
           <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
           <folding>
-            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
-            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+            <element signature="e#3567#3698#0" expanded="false" />
+            <element signature="e#3751#4522#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -474,10 +496,10 @@
         <state relative-caret-position="2332">
           <caret line="106" column="69" lean-forward="false" selection-start-line="106" selection-start-column="69" selection-end-line="106" selection-end-column="69" />
           <folding>
-            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
-            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+            <element signature="e#3567#3698#0" expanded="false" />
+            <element signature="e#3751#4522#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -535,10 +557,10 @@
         <state relative-caret-position="154">
           <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
-            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
-            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+            <element signature="e#3567#3698#0" expanded="false" />
+            <element signature="e#3751#4522#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -564,10 +586,10 @@
         <state relative-caret-position="44">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
-            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+            <element signature="e#3567#3698#0" expanded="false" />
+            <element signature="e#3751#4522#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -608,14 +630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -661,22 +675,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sql queries/events.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        <state relative-caret-position="418">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
+            <element signature="n#!!block;n#returnUserPool#0" expanded="false" />
+            <element signature="n#!!block;n#updateLastOnline#0" expanded="false" />
+            <element signature="e#2917#3127#0" expanded="false" />
+            <element signature="e#3185#3405#0" expanded="false" />
+            <element signature="e#3456#3574#0" expanded="false" />
+            <element signature="e#3637#3850#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+        <state relative-caret-position="308">
+          <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
-            <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+            <element signature="e#3567#3698#0" expanded="false" />
+            <element signature="e#3751#4522#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
