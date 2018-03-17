@@ -64,7 +64,6 @@ function removeFromUserPool(curr_user,callback) {
     });
 }
 
-
 //return available users in user_pool(user_status table), who are available to be connected
 function returnUserPool(callback) {
     var query_statement = 'select * from user_status where grouped=0 AND status="online"';
@@ -104,7 +103,66 @@ function updateLastOnline(curr_user,callback) {
     });
 }
 
+//get user gender
+function getGender(curr_user,callback) {
+    var query_statement = 'select gender from user_info where user_id=?';
+    mysql.getConnection(function (err,conn) {
+        if(err){
+            console.log("connection failed");
+        }else{
+            conn.query(query_statement,[curr_user],(err,rows) => {
+                if (err) {
+                    callback(false);
+                }else{
+                    if(rows.length == 0){
+                        callback(false);
+                    }else{
+                        console.log("inside getGender function:"+rows);
+                        callback(rows[0].gender);
+                    }
+                }
+            });
+        }
+    });
+}
 
+//matching users based on who is online and the matching criteria, currently only gender
+function getPair(curr_user,callback) {
+    getGender(curr_user,function (gender) {
+        if(gender !== false){
+            var gender_partner = '';
+            if(gender === 'male'){
+                gender_partner = 'female';
+            }else{
+                gender_partner = 'male';
+            }
+            var query_statement = 'select * from get_available_partners where gender=?';
+            mysql.getConnection(function (err,conn) {
+                if(err){
+                    console.log("connection failed");
+                }else{
+                    conn.query(query_statement,[gender_partner],(err,rows) => {
+                        if (err) {
+                            callback(false);
+                        }else{
+                            if(rows.length == 0){
+                                callback(false);
+                            }else{
+                                console.log(rows);
+                                callback(rows[0].user_id);
+                            }
+                        }
+                    });
+                }
+            });
+        }else{
+            callback("user not present in database");
+        }
+    });
+}
+
+
+//API requests
 router.post('/addToUserPool',function (req,res) {
     var curr_user = req.body.curr_user;
     addToUserPool(curr_user,function (result) {
@@ -115,7 +173,6 @@ router.post('/addToUserPool',function (req,res) {
         }
     });
 });
-
 
 router.post('/UserPoolToGrouped',function (req,res) {
     var curr_user = req.body.curr_user;
@@ -149,6 +206,18 @@ router.post('/getUserPool',function (req,res) {
 
 });
 
+router.post('/getPairId',function (req,res) {
+
+    getPair(function (result) {
+        if(result === false){
+            res.send("no partner available");
+        }else{
+            res.send(result);
+        }
+    });
+
+});
+
 router.post('/updateLastOnlineUserPool',function (req,res) {
     var curr_user = req.body.curr_user;
     updateLastOnline(curr_user,function (result) {
@@ -160,6 +229,9 @@ router.post('/updateLastOnlineUserPool',function (req,res) {
     });
 });
 
-
+//pending functions
+// 1. /pairUser(user1,user2)
+// 2. /changeCohortForPair(user1,user2)
+// 3. /changeCohortDefault(user1)
 
 module.exports = router;

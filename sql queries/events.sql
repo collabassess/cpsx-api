@@ -19,3 +19,23 @@ CREATE TABLE user_status(
   `last_online` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `grouped` BOOL
 );
+
+CREATE TABLE user_info(
+  user_id int(11),
+  gender varchar(30) NOT NULL,
+  PRIMARY KEY (user_id));
+
+INSERT INTO user_info values(12,'male');
+INSERT INTO user_info values(13,'male');
+INSERT INTO user_info values(15,'male');
+INSERT INTO user_info values(16,'female');
+INSERT INTO user_info values(17,'male');
+INSERT INTO user_info values(18,'female');
+INSERT INTO user_info values(19,'male');
+INSERT INTO user_info values(20,'female');
+
+
+CREATE VIEW get_available_partners AS
+SELECT s.user_id,i.gender
+FROM user_status s, user_info i
+WHERE s.user_id = i.user_id AND s.status = 'online' AND s.grouped=False;
