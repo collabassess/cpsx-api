@@ -112,10 +112,10 @@ function getGender(curr_user,callback) {
         }else{
             conn.query(query_statement,[curr_user],(err,rows) => {
                 if (err) {
-                    callback(false);
+                    callback("err");
                 }else{
                     if(rows.length == 0){
-                        callback(false);
+                        callback("err");
                     }else{
                         console.log("inside getGender function:"+rows);
                         callback(rows[0].gender);
@@ -129,7 +129,7 @@ function getGender(curr_user,callback) {
 //matching users based on who is online and the matching criteria, currently only gender
 function getPair(curr_user,callback) {
     getGender(curr_user,function (gender) {
-        if(gender !== false){
+        if(gender !== "err"){
             var gender_partner = '';
             if(gender === 'male'){
                 gender_partner = 'female';
@@ -143,10 +143,10 @@ function getPair(curr_user,callback) {
                 }else{
                     conn.query(query_statement,[gender_partner],(err,rows) => {
                         if (err) {
-                            callback(false);
+                            callback("err");
                         }else{
                             if(rows.length == 0){
-                                callback(false);
+                                callback("err");
                             }else{
                                 console.log(rows);
                                 callback(rows[0].user_id);
@@ -209,7 +209,7 @@ router.post('/getUserPool',function (req,res) {
 router.post('/getPairId',function (req,res) {
 
     getPair(function (result) {
-        if(result === false){
+        if(result === "err"){
             res.send("no partner available");
         }else{
             res.send(result);
