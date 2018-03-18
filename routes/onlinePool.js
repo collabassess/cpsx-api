@@ -127,7 +127,7 @@ function getGender(curr_user,callback) {
 }
 
 //matching users based on who is online and the matching criteria, currently only gender
-function getPair(curr_user,callback) {
+function getGenderBasedPair(curr_user,callback) {
     getGender(curr_user,function (gender) {
         if(gender !== 0){
             var gender_partner = '';
@@ -208,7 +208,7 @@ router.post('/getUserPool',function (req,res) {
 
 router.post('/getPairId',function (req,res) {
     var curr_user = req.body.curr_user;
-    getPair(curr_user, function (result) {
+    getGenderBasedPair(curr_user, function (result) {
         if(result === "err"){
             res.send("no partner available");
         }else{
