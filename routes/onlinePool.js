@@ -105,17 +105,17 @@ function updateLastOnline(curr_user,callback) {
 
 //get user gender
 function getGender(curr_user,callback) {
-    var query_statement = 'select gender from user_info where user_id=?';
+    var query_statement = 'select gender from user_info where user_id=? ';
     mysql.getConnection(function (err,conn) {
         if(err){
             console.log("connection failed");
         }else{
             conn.query(query_statement,[curr_user],(err,rows) => {
                 if (err) {
-                    callback("err");
+                    throw err;
                 }else{
                     if(rows.length == 0){
-                        callback("err");
+                        callback(0);
                     }else{
                         console.log("inside getGender function:"+rows);
                         callback(rows[0].gender);
@@ -129,7 +129,7 @@ function getGender(curr_user,callback) {
 //matching users based on who is online and the matching criteria, currently only gender
 function getPair(curr_user,callback) {
     getGender(curr_user,function (gender) {
-        if(gender !== "err"){
+        if(gender !== 0){
             var gender_partner = '';
             if(gender === 'male'){
                 gender_partner = 'female';
@@ -207,12 +207,13 @@ router.post('/getUserPool',function (req,res) {
 });
 
 router.post('/getPairId',function (req,res) {
-
-    getPair(function (result) {
+    var curr_user = req.body.curr_user;
+    getPair(curr_user, function (result) {
         if(result === "err"){
             res.send("no partner available");
         }else{
-            res.send(result);
+            console.log(result);
+            res.send(result.toString());
         }
     });
 
