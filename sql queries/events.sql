@@ -2,7 +2,7 @@ CREATE EVENT `user_status_offline`
 ON SCHEDULE EVERY 1 MINUTE
 ON COMPLETION NOT PRESERVE
 ENABLE
-COMMENT 'clear online pool of users who have '
+COMMENT 'clear online pool of users who have been inactive for more than 5 minutes'
 DO
 UPDATE user_status SET status='offline' WHERE status='online' AND last_online <= Now() - INTERVAL 5 Minute;
 
@@ -14,11 +14,6 @@ COMMENT 'clear session of paired users who have spent more than 3 hours'
 DO
 UPDATE user_groups SET status="invalid" WHERE status='valid' AND created_at <= Now() - INTERVAL 180 Minute;
 
-
-CREATE EVENT `user_status_insert`
-ON SCHEDULE EVERY 1 MINUTE
-DO
-insert into collab_assess.user_status(user_id,status,grouped) values(3,'online',false);
 
 
 CREATE TABLE user_status(

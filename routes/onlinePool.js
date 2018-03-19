@@ -282,12 +282,12 @@ function assignCohort(user,cohort_id,callback){
 
 //function check if users are already paired, before pairing; if paired, return session_id
 function getSession(user1,user2,course_id, callback) {
-    var query_statement = 'SELECT * from user_groups where course_id=? AND user1=? AND user2=? AND status="valid"';
+    var query_statement = 'SELECT * from user_groups where course_id=? AND ((user1=? AND user2=?) OR (user1=? AND user2=?)) AND status="valid"';
     mysql.getConnection('CP_AS',function (err,conn) {
         if(err){
             console.log("connection failed");
         }else{
-            conn.query(query_statement,[course_id,user1,user2],(err,rows) => {
+            conn.query(query_statement,[course_id,user1,user2,user2,user1],(err,rows) => {
                 conn.release();
                 if (err) {
                     callback("error");
