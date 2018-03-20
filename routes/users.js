@@ -19,7 +19,7 @@ function getUserRoom(curr_user,callback){
                     throw err;
                 } else if(rows.length >0) {
                     rows.forEach((row) => {
-                        room = "room" +"_"+ row.session_id +"_"+ row.course_id;
+                        room = String(row.session_id);
                         callback(room);
                     });
                 }else{
