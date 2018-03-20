@@ -15,6 +15,21 @@ DO
 UPDATE user_groups SET status="invalid" WHERE status='valid' AND created_at <= Now() - INTERVAL 180 Minute;
 
 
+//trigger
+DROP TRIGGER after_user_status_update;
+DELIMITER $$
+CREATE
+    TRIGGER `after_user_status_update` AFTER UPDATE
+    ON `user_status`
+    FOR EACH ROW BEGIN
+        IF NEW.status="offline"
+            THEN SET @changestatus = "invalid";
+        END IF;
+    UPDATE user_groups SET status=@changestatus WHERE (user1=New.user_id or user2=New.user_id) AND status="valid";
+END$$
+DELIMITER ;
+
+
 
 CREATE TABLE user_status(
 `user_id` int(11) NOT NULL,

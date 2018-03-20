@@ -325,7 +325,7 @@ function markAsGrouped(user1,user2,callback){
 function pairUsers(user1,user2,course_id, callback) {
     getSession(user1,user2,course_id, function(valid){
         if(valid === "invalid"){
-            var query_statement = 'INSERT INTO user_groups(course_id,user1,user2) values(?,?,?)';
+            var query_statement = 'INSERT INTO user_groups(course_id,user1,user2,status) values(?,?,?,"valid")';
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
                     console.log("connection failed");
