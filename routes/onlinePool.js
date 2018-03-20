@@ -282,7 +282,7 @@ function assignCohort(user,cohort_id,callback){
 
 //function check if users are already paired, before pairing; if paired, return session_id
 function getSession(user1,user2,course_id, callback) {
-    var query_statement = 'SELECT * from user_groups where course_id=? AND ((user1=? AND user2=?) OR (user1=? AND user2=?)) AND status="valid"';
+    var query_statement = 'SELECT * from user_groups where course_id=? AND ((user1=? AND user2=?) OR (user1=? AND user2=?)) AND status=`valid`';
     mysql.getConnection('CP_AS',function (err,conn) {
         if(err){
             console.log("connection failed");
@@ -327,8 +327,8 @@ function pairUsers(user1,user2,course_id, callback) {
     getSession(user1,user2,course_id, function(valid){
         if(valid === false){
             console.log("inside pair Users, insert query");
-            var query_statement123 = 'INSERT INTO user_groups(status,course_id,user1,user2) values("valid",?,?,?);';
-            var query = 'UPDATE user_groups set status="valid" where course_id=? AND user1=? AND user2=?';
+            var query_statement123 = 'INSERT INTO user_groups(status,course_id,user1,user2) values(`valid`,?,?,?);';
+            var query = 'UPDATE user_groups set status=`valid` where course_id=? AND user1=? AND user2=?';
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
                     console.log("connection failed");
