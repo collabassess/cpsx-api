@@ -4,7 +4,6 @@
     <list default="true" id="8e55b5b6-4ea6-4072-95cf-324c4309149b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/routes/onlinePool.js" afterPath="$PROJECT_DIR$/routes/onlinePool.js" />
-      <change beforePath="$PROJECT_DIR$/sql queries/events.sql" afterPath="$PROJECT_DIR$/sql queries/events.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -76,8 +75,8 @@
       <file leaf-file-name="onlinePool.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="325" column="53" lean-forward="false" selection-start-line="325" selection-start-column="53" selection-end-line="325" selection-end-column="53" />
               <folding>
                 <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
                 <element signature="e#401#927#0" expanded="false" />
@@ -93,18 +92,20 @@
                 <element signature="n#!!block;n#assignCohort#0" expanded="false" />
                 <element signature="e#9240#9297#0" expanded="false" />
                 <element signature="n#!!block;n#getSession#0" expanded="false" />
+                <element signature="n#!!block;n#markAsGrouped#0" expanded="false" />
+                <element signature="e#11336#12800#0" expanded="false" />
                 <element signature="n#!!block;n#destroySession#0" expanded="false" />
-                <element signature="e#12260#12625#0" expanded="false" />
-                <element signature="e#12694#12904#0" expanded="false" />
-                <element signature="e#12960#13180#0" expanded="false" />
-                <element signature="e#13236#13451#0" expanded="false" />
-                <element signature="e#13501#13619#0" expanded="false" />
-                <element signature="e#13667#13948#0" expanded="false" />
-                <element signature="e#14011#14224#0" expanded="false" />
-                <element signature="e#14272#14750#0" expanded="false" />
-                <element signature="e#14810#15369#0" expanded="false" />
-                <element signature="e#15423#15626#0" expanded="false" />
-                <element signature="e#15629#15678#0" expanded="false" />
+                <element signature="e#13074#13439#0" expanded="false" />
+                <element signature="e#13508#13718#0" expanded="false" />
+                <element signature="e#13774#13994#0" expanded="false" />
+                <element signature="e#14050#14265#0" expanded="false" />
+                <element signature="e#14315#14433#0" expanded="false" />
+                <element signature="e#14481#14762#0" expanded="false" />
+                <element signature="e#14825#15038#0" expanded="false" />
+                <element signature="e#15086#15564#0" expanded="false" />
+                <element signature="e#15624#16183#0" expanded="false" />
+                <element signature="e#16237#16440#0" expanded="false" />
+                <element signature="e#16443#16492#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -207,6 +208,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,7 +231,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,12 +285,13 @@
       <workItem from="1520270006329" duration="4693000" />
       <workItem from="1520528293164" duration="760000" />
       <workItem from="1520884912498" duration="26936000" />
-      <workItem from="1521476574270" duration="271000" />
+      <workItem from="1521476574270" duration="492000" />
+      <workItem from="1521556015916" duration="283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57981000" />
+    <option name="totallyTimeSpent" value="58485000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -299,13 +301,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23880596" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -759,8 +761,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="325" column="53" lean-forward="false" selection-start-line="325" selection-start-column="53" selection-end-line="325" selection-end-column="53" />
           <folding>
             <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
             <element signature="e#401#927#0" expanded="false" />
@@ -776,18 +778,20 @@
             <element signature="n#!!block;n#assignCohort#0" expanded="false" />
             <element signature="e#9240#9297#0" expanded="false" />
             <element signature="n#!!block;n#getSession#0" expanded="false" />
+            <element signature="n#!!block;n#markAsGrouped#0" expanded="false" />
+            <element signature="e#11336#12800#0" expanded="false" />
             <element signature="n#!!block;n#destroySession#0" expanded="false" />
-            <element signature="e#12260#12625#0" expanded="false" />
-            <element signature="e#12694#12904#0" expanded="false" />
-            <element signature="e#12960#13180#0" expanded="false" />
-            <element signature="e#13236#13451#0" expanded="false" />
-            <element signature="e#13501#13619#0" expanded="false" />
-            <element signature="e#13667#13948#0" expanded="false" />
-            <element signature="e#14011#14224#0" expanded="false" />
-            <element signature="e#14272#14750#0" expanded="false" />
-            <element signature="e#14810#15369#0" expanded="false" />
-            <element signature="e#15423#15626#0" expanded="false" />
-            <element signature="e#15629#15678#0" expanded="false" />
+            <element signature="e#13074#13439#0" expanded="false" />
+            <element signature="e#13508#13718#0" expanded="false" />
+            <element signature="e#13774#13994#0" expanded="false" />
+            <element signature="e#14050#14265#0" expanded="false" />
+            <element signature="e#14315#14433#0" expanded="false" />
+            <element signature="e#14481#14762#0" expanded="false" />
+            <element signature="e#14825#15038#0" expanded="false" />
+            <element signature="e#15086#15564#0" expanded="false" />
+            <element signature="e#15624#16183#0" expanded="false" />
+            <element signature="e#16237#16440#0" expanded="false" />
+            <element signature="e#16443#16492#0" expanded="false" />
           </folding>
         </state>
       </provider>

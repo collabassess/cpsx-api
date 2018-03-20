@@ -303,6 +303,24 @@ function getSession(user1,user2,course_id, callback) {
     });
 }
 
+
+//function to mark two matched users as grouped in user_pool(user_status) table
+function markAsGrouped(user1,user2,callback){
+    updateUserPoolAsGrouped(user1, function (result) {
+        if(result){
+            updateUserPoolAsGrouped(user2,function (result1) {
+                if(result1){
+                    callback(true);
+                }else{
+                    callback(false);
+                }
+            })
+        }else{
+            callback(false);
+        }
+    });
+}
+
 //function to pair users
 function pairUsers(user1,user2,course_id, callback) {
     getSession(user1,user2,course_id, function(valid){
@@ -318,12 +336,18 @@ function pairUsers(user1,user2,course_id, callback) {
                             callback(false);
                         }else{
                             console.log("1 new paired session created between "+user1+" and "+user2);
-                            assignOppositeCohorts(user1,user2,course_id, function (result) {
-                                if(result){
-                                    callback(true);
-                                }else{
-                                    callback(false);
-                                }
+                            markAsGrouped(user1,user2, function (result1) {
+                               if(result1){
+                                   assignOppositeCohorts(user1,user2,course_id, function (result2) {
+                                       if(result2){
+                                           callback(true);
+                                       }else{
+                                           callback(false);
+                                       }
+                                   });
+                               }else{
+                                   callback(false);
+                               }
                             });
                         }
                     });
