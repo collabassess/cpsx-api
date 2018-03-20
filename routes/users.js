@@ -7,7 +7,7 @@ var mysql = require('../db_module/cpsx_db').pool;
 function getUserRoom(curr_user,callback){
     var room = '';
     var query_statment = 'SELECT * from user_groups WHERE (user1= ? OR user2= ?) AND status="valid"';
-    mysql.getConnection(function (err, conn) {
+    mysql.getConnection('CP_AS',function (err, conn) {
         if(err){
             console.log("connection failed");
             throw err;
@@ -34,7 +34,7 @@ function upsertRoomUser(curr_user,callback) {
     query_statment = 'SELECT * from user_groups\n' +
         '                           WHERE user1 IS NULL OR user2 IS NULL';
     console.log("upsert function: step 1");
-    mysql.getConnection(function (err, conn) {
+    mysql.getConnection('CP_AS',function (err, conn) {
         if(err){
             console.log("connection failed");
             throw err;
