@@ -328,6 +328,7 @@ function pairUsers(user1,user2,course_id, callback) {
         if(valid === false){
             console.log("inside pair Users, insert query");
             var query_statement123 = 'INSERT INTO user_groups(status,course_id,user1,user2) values("valid",?,?,?);';
+            var query = 'UPDATE user_groups set status="valid" where course_id=? AND user1=? AND user2=?';
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
                     console.log("connection failed");
@@ -336,23 +337,31 @@ function pairUsers(user1,user2,course_id, callback) {
                     conn.query(query_statement123,[course_id,user1,user2],(err,result) => {
                         conn.release();
                         if (err) {
+                            console.log("second update did not work");
                             callback(false);
                         }else{
-                            console.log(result);
-                            console.log("1 new paired session created between "+user1+" and "+user2);
-                            markAsGrouped(user1,user2, function (result1) {
-                               if(result1){
-                                   assignOppositeCohorts(user1,user2,course_id, function (result2) {
-                                       if(result2){
-                                           callback(true);
-                                       }else{
-                                           callback(false);
-                                       }
-                                   });
-                               }else{
-                                   callback(false);
-                               }
+                            conn.query(query,[course_id,user1,user2],(err,result)=>{
+                                if(err){
+                                    callback(false);
+                                }else{
+                                    console.log(result);
+                                    console.log("1 new paired session created between "+user1+" and "+user2);
+                                    markAsGrouped(user1,user2, function (result1) {
+                                        if(result1){
+                                            assignOppositeCohorts(user1,user2,course_id, function (result2) {
+                                                if(result2){
+                                                    callback(true);
+                                                }else{
+                                                    callback(false);
+                                                }
+                                            });
+                                        }else{
+                                            callback(false);
+                                        }
+                                    });
+                                }
                             });
+
                         }
                     });
                 }
@@ -460,8 +469,9 @@ router.post('/pairUsers',function (req,res) {
             getSession(user1,user2,course_id, function (session_id) {
                 if(session_id !== false){
                     res.send(String(session_id));
+                }else{
+                    res.send("NaN");
                 }
-                res.send("NaN");
             });
         }else if(result === false){
             res.send("something went wrong");
