@@ -6,7 +6,7 @@ var mysql = require('../db_module/cpsx_db').pool;
 
 function getUserRoom(curr_user,callback){
     var room = '';
-    var query_statment = 'SELECT * from user_groups WHERE user1= ? OR user2= ?';
+    var query_statment = 'SELECT * from user_groups WHERE (user1= ? OR user2= ?) AND status="valid"';
     mysql.getConnection(function (err, conn) {
         if(err){
             console.log("connection failed");

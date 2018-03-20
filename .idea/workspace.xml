@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e55b5b6-4ea6-4072-95cf-324c4309149b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/routes/onlinePool.js" afterPath="$PROJECT_DIR$/routes/onlinePool.js" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,25 +56,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+            <state relative-caret-position="45">
+              <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
               <folding>
                 <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-                <element signature="e#1215#3495#0" expanded="false" />
-                <element signature="e#3567#3698#0" expanded="false" />
-                <element signature="e#3751#4522#0" expanded="false" />
+                <element signature="e#1236#3516#0" expanded="false" />
+                <element signature="e#3772#4543#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="onlinePool.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="onlinePool.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="1067">
               <caret line="325" column="53" lean-forward="false" selection-start-line="325" selection-start-column="53" selection-end-line="325" selection-end-column="53" />
               <folding>
                 <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
@@ -161,12 +159,12 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/cohorts.js" />
         <option value="$PROJECT_DIR$/db_module/cpsx_db.js" />
         <option value="$PROJECT_DIR$/sql queries/events.sql" />
         <option value="$PROJECT_DIR$/routes/onlinePool.js" />
+        <option value="$PROJECT_DIR$/routes/users.js" />
       </list>
     </option>
   </component>
@@ -286,12 +284,12 @@
       <workItem from="1520528293164" duration="760000" />
       <workItem from="1520884912498" duration="26936000" />
       <workItem from="1521476574270" duration="492000" />
-      <workItem from="1521556015916" duration="283000" />
+      <workItem from="1521556015916" duration="548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58485000" />
+    <option name="totallyTimeSpent" value="58750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -363,9 +361,8 @@
           <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-            <element signature="e#1215#3495#0" expanded="false" />
-            <element signature="e#3567#3698#0" expanded="false" />
-            <element signature="e#3751#4522#0" expanded="false" />
+            <element signature="e#1236#3516#0" expanded="false" />
+            <element signature="e#3772#4543#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -391,9 +388,8 @@
           <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
           <folding>
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-            <element signature="e#1215#3495#0" expanded="false" />
-            <element signature="e#3567#3698#0" expanded="false" />
-            <element signature="e#3751#4522#0" expanded="false" />
+            <element signature="e#1236#3516#0" expanded="false" />
+            <element signature="e#3772#4543#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -483,9 +479,8 @@
           <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
           <folding>
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-            <element signature="e#1215#3495#0" expanded="false" />
-            <element signature="e#3567#3698#0" expanded="false" />
-            <element signature="e#3751#4522#0" expanded="false" />
+            <element signature="e#1236#3516#0" expanded="false" />
+            <element signature="e#3772#4543#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -543,9 +538,8 @@
           <caret line="106" column="69" lean-forward="false" selection-start-line="106" selection-start-column="69" selection-end-line="106" selection-end-column="69" />
           <folding>
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-            <element signature="e#1215#3495#0" expanded="false" />
-            <element signature="e#3567#3698#0" expanded="false" />
-            <element signature="e#3751#4522#0" expanded="false" />
+            <element signature="e#1236#3516#0" expanded="false" />
+            <element signature="e#3772#4543#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -603,9 +597,8 @@
           <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-            <element signature="e#1215#3495#0" expanded="false" />
-            <element signature="e#3567#3698#0" expanded="false" />
-            <element signature="e#3751#4522#0" expanded="false" />
+            <element signature="e#1236#3516#0" expanded="false" />
+            <element signature="e#3772#4543#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,9 +624,8 @@
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-            <element signature="e#1215#3495#0" expanded="false" />
-            <element signature="e#3567#3698#0" expanded="false" />
-            <element signature="e#3751#4522#0" expanded="false" />
+            <element signature="e#1236#3516#0" expanded="false" />
+            <element signature="e#3772#4543#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -738,19 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
-            <element signature="e#1215#3495#0" expanded="false" />
-            <element signature="e#3567#3698#0" expanded="false" />
-            <element signature="e#3751#4522#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sql queries/events.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="902">
@@ -761,7 +740,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="1067">
           <caret line="325" column="53" lean-forward="false" selection-start-line="325" selection-start-column="53" selection-end-line="325" selection-end-column="53" />
           <folding>
             <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
@@ -792,6 +771,18 @@
             <element signature="e#15624#16183#0" expanded="false" />
             <element signature="e#16237#16440#0" expanded="false" />
             <element signature="e#16443#16492#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+          <folding>
+            <element signature="n#!!block;n#getUserRoom#0" expanded="false" />
+            <element signature="e#1236#3516#0" expanded="false" />
+            <element signature="e#3772#4543#0" expanded="false" />
           </folding>
         </state>
       </provider>
