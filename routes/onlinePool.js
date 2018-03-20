@@ -323,8 +323,9 @@ function markAsGrouped(user1,user2,callback){
 
 //function to pair users
 function pairUsers(user1,user2,course_id, callback) {
+    console.log("inside pairUsers");
     getSession(user1,user2,course_id, function(valid){
-        if(valid === "invalid"){
+        if(valid === false){
             console.log("inside pair Users, insert query");
             var status = "valid";
             var query_statement = 'INSERT INTO user_groups(course_id,user1,user2,status) values(?,?,?,?)';
