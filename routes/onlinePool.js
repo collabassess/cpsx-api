@@ -295,7 +295,7 @@ function getSession(user1,user2,course_id, callback) {
                     if(rows.length>0){
                         callback(rows[0].session_id);
                     }else{
-                        callback("invalid");
+                        callback(false);
                     }
                 }
             });
@@ -325,6 +325,7 @@ function markAsGrouped(user1,user2,callback){
 function pairUsers(user1,user2,course_id, callback) {
     getSession(user1,user2,course_id, function(valid){
         if(valid === "invalid"){
+            console.log("inside pair Users, insert query");
             var query_statement = 'INSERT INTO user_groups(course_id,user1,user2,status) values(?,?,?,"valid")';
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
@@ -335,6 +336,7 @@ function pairUsers(user1,user2,course_id, callback) {
                         if (err) {
                             callback(false);
                         }else{
+                            console.log(result);
                             console.log("1 new paired session created between "+user1+" and "+user2);
                             markAsGrouped(user1,user2, function (result1) {
                                if(result1){
@@ -454,7 +456,10 @@ router.post('/pairUsers',function (req,res) {
     pairUsers(user1,user2,course_id, function (result) {
         if(result === true){
             getSession(user1,user2,course_id, function (session_id) {
-                res.send(String(session_id));
+                if(session_id !== false){
+                    res.send(String(session_id));
+                }
+                res.send("NaN");
             });
         }else if(result === false){
             res.send("something went wrong");

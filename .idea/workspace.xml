@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8e55b5b6-4ea6-4072-95cf-324c4309149b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/routes/onlinePool.js" afterPath="$PROJECT_DIR$/routes/onlinePool.js" />
-      <change beforePath="$PROJECT_DIR$/sql queries/events.sql" afterPath="$PROJECT_DIR$/sql queries/events.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -72,8 +71,8 @@
       <file leaf-file-name="onlinePool.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="334" column="34" lean-forward="true" selection-start-line="334" selection-start-column="34" selection-end-line="334" selection-end-column="34" />
+            <state relative-caret-position="214">
+              <caret line="338" column="48" lean-forward="false" selection-start-line="338" selection-start-column="48" selection-end-line="338" selection-end-column="48" />
               <folding>
                 <element signature="e#401#927#0" expanded="false" />
                 <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
@@ -87,20 +86,17 @@
                 <element signature="n#!!block;n#assignOppositeCohorts#0" expanded="false" />
                 <element signature="n#!!block;n#assignCohort#0" expanded="false" />
                 <element signature="e#9240#9297#0" expanded="false" />
-                <element signature="n#!!block;n#getSession#0" expanded="false" />
                 <element signature="n#!!block;n#markAsGrouped#0" expanded="false" />
                 <element signature="n#!!block;n#destroySession#0" expanded="false" />
-                <element signature="e#13089#13454#0" expanded="false" />
-                <element signature="e#13523#13733#0" expanded="false" />
-                <element signature="e#13789#14009#0" expanded="false" />
-                <element signature="e#14065#14280#0" expanded="false" />
-                <element signature="e#14330#14448#0" expanded="false" />
-                <element signature="e#14496#14777#0" expanded="false" />
-                <element signature="e#14840#15053#0" expanded="false" />
-                <element signature="e#15101#15579#0" expanded="false" />
-                <element signature="e#15639#16198#0" expanded="false" />
-                <element signature="e#16252#16455#0" expanded="false" />
-                <element signature="e#16458#16507#0" expanded="false" />
+                <element signature="e#13194#13559#0" expanded="false" />
+                <element signature="e#13628#13838#0" expanded="false" />
+                <element signature="e#13894#14114#0" expanded="false" />
+                <element signature="e#14170#14385#0" expanded="false" />
+                <element signature="e#14435#14553#0" expanded="false" />
+                <element signature="e#14945#15158#0" expanded="false" />
+                <element signature="e#15841#16400#0" expanded="false" />
+                <element signature="e#16454#16657#0" expanded="false" />
+                <element signature="e#16660#16709#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -281,12 +277,12 @@
       <workItem from="1520528293164" duration="760000" />
       <workItem from="1520884912498" duration="26936000" />
       <workItem from="1521476574270" duration="492000" />
-      <workItem from="1521556015916" duration="2684000" />
+      <workItem from="1521556015916" duration="3144000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60886000" />
+    <option name="totallyTimeSpent" value="61346000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -735,8 +731,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="334" column="34" lean-forward="true" selection-start-line="334" selection-start-column="34" selection-end-line="334" selection-end-column="34" />
+        <state relative-caret-position="214">
+          <caret line="338" column="48" lean-forward="false" selection-start-line="338" selection-start-column="48" selection-end-line="338" selection-end-column="48" />
           <folding>
             <element signature="e#401#927#0" expanded="false" />
             <element signature="n#!!block;n#updateUserPoolAsGrouped#0" expanded="false" />
@@ -750,20 +746,17 @@
             <element signature="n#!!block;n#assignOppositeCohorts#0" expanded="false" />
             <element signature="n#!!block;n#assignCohort#0" expanded="false" />
             <element signature="e#9240#9297#0" expanded="false" />
-            <element signature="n#!!block;n#getSession#0" expanded="false" />
             <element signature="n#!!block;n#markAsGrouped#0" expanded="false" />
             <element signature="n#!!block;n#destroySession#0" expanded="false" />
-            <element signature="e#13089#13454#0" expanded="false" />
-            <element signature="e#13523#13733#0" expanded="false" />
-            <element signature="e#13789#14009#0" expanded="false" />
-            <element signature="e#14065#14280#0" expanded="false" />
-            <element signature="e#14330#14448#0" expanded="false" />
-            <element signature="e#14496#14777#0" expanded="false" />
-            <element signature="e#14840#15053#0" expanded="false" />
-            <element signature="e#15101#15579#0" expanded="false" />
-            <element signature="e#15639#16198#0" expanded="false" />
-            <element signature="e#16252#16455#0" expanded="false" />
-            <element signature="e#16458#16507#0" expanded="false" />
+            <element signature="e#13194#13559#0" expanded="false" />
+            <element signature="e#13628#13838#0" expanded="false" />
+            <element signature="e#13894#14114#0" expanded="false" />
+            <element signature="e#14170#14385#0" expanded="false" />
+            <element signature="e#14435#14553#0" expanded="false" />
+            <element signature="e#14945#15158#0" expanded="false" />
+            <element signature="e#15841#16400#0" expanded="false" />
+            <element signature="e#16454#16657#0" expanded="false" />
+            <element signature="e#16660#16709#0" expanded="false" />
           </folding>
         </state>
       </provider>
