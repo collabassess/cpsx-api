@@ -327,7 +327,7 @@ function pairUsers(user1,user2,course_id, callback) {
     getSession(user1,user2,course_id, function(valid){
         if(valid === false){
             console.log("inside pair Users, insert query");
-            var query_statement123 = 'INSERT INTO user_groups(course_id,user1,user2,status) values(?,?,?,"valid")';
+            var query_statement123 = 'INSERT INTO user_groups(status,course_id,user1,user2) values("valid",?,?,?);';
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
                     console.log("connection failed");
