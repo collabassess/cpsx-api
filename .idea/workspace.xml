@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8e55b5b6-4ea6-4072-95cf-324c4309149b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
-      <change beforePath="$PROJECT_DIR$/sql queries/events.sql" afterPath="$PROJECT_DIR$/sql queries/events.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -60,8 +59,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+            <state relative-caret-position="316">
+              <caret line="22" column="36" lean-forward="true" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
               <folding>
                 <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
               </folding>
@@ -286,12 +285,12 @@
       <workItem from="1520884912498" duration="26936000" />
       <workItem from="1521476574270" duration="492000" />
       <workItem from="1521556015916" duration="6741000" />
-      <workItem from="1521666430829" duration="2402000" />
+      <workItem from="1521666430829" duration="2525000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67345000" />
+    <option name="totallyTimeSpent" value="67468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -759,8 +758,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        <state relative-caret-position="316">
+          <caret line="22" column="36" lean-forward="true" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
           <folding>
             <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
           </folding>
