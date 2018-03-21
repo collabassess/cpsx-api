@@ -17,11 +17,8 @@ function getUserRoom(curr_user,callback){
                 if (err) {
                     console.log("error: ", err);
                     throw err;
-                } else if(rows.length >0) {
-                    rows.forEach((row) => {
-                        room = String(row.session_id);
-                        callback(room);
-                    });
+                }else if(rows.length >0) {
+                    callback(row[0].session_id);
                 }else{
                     callback("NaN");
                 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e55b5b6-4ea6-4072-95cf-324c4309149b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/db_module/cpsx_db.js" afterPath="$PROJECT_DIR$/db_module/cpsx_db.js" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="events.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="events.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sql queries/events.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
+            <state relative-caret-position="-355">
               <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
               <folding />
             </state>
@@ -59,8 +59,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+            <state relative-caret-position="287">
+              <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
               <folding>
                 <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
               </folding>
@@ -99,7 +99,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cpsx_db.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cpsx_db.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_module/cpsx_db.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
@@ -161,10 +161,10 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/cohorts.js" />
-        <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/sql queries/events.sql" />
         <option value="$PROJECT_DIR$/routes/onlinePool.js" />
         <option value="$PROJECT_DIR$/db_module/cpsx_db.js" />
+        <option value="$PROJECT_DIR$/routes/users.js" />
       </list>
     </option>
   </component>
@@ -285,12 +285,12 @@
       <workItem from="1520884912498" duration="26936000" />
       <workItem from="1521476574270" duration="492000" />
       <workItem from="1521556015916" duration="6741000" />
-      <workItem from="1521666430829" duration="1984000" />
+      <workItem from="1521666430829" duration="2184000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66927000" />
+    <option name="totallyTimeSpent" value="67127000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -711,24 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-          <folding>
-            <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql queries/events.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
@@ -762,6 +744,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!block;n#upsertRoomUser#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql queries/events.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-355">
+          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
           <folding />
         </state>
       </provider>
