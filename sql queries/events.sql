@@ -23,9 +23,8 @@ CREATE
     ON `user_status`
     FOR EACH ROW BEGIN
         IF NEW.status="offline"
-            THEN SET @changestatus = "invalid";
+            THEN UPDATE user_groups SET status=@changestatus WHERE (user1=New.user_id or user2=New.user_id) AND status="valid";
         END IF;
-    UPDATE user_groups SET status=@changestatus WHERE (user1=New.user_id or user2=New.user_id) AND status="valid";
 END$$
 DELIMITER ;
 

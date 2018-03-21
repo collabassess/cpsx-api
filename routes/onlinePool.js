@@ -28,7 +28,7 @@ function addToUserPool(user, callback) {
 }
 
 //update user_pool status of user as grouped, so that he doesn't show as available
-function updateUserPoolAsGrouped(curr_user,callback) {
+function UserPoolToGrouped(curr_user,callback) {
     var query_statement = 'update user_status set grouped=True where user_id=? AND status="online"';
     mysql.getConnection('CP_AS',function (err,conn) {
         if(err){
@@ -48,7 +48,7 @@ function updateUserPoolAsGrouped(curr_user,callback) {
 }
 
 //remove user from user_pool online; In user_status table, turn the status to offline
-function removeFromUserPool(curr_user,callback) {
+function UserPoolToOffline(curr_user,callback) {
     var query_statement = 'update user_status set status="offline" where user_id=? AND status="online"';
     mysql.getConnection('CP_AS',function (err,conn) {
         if(err){
@@ -68,8 +68,8 @@ function removeFromUserPool(curr_user,callback) {
 }
 
 //return available users in user_pool(user_status table), who are available to be connected
-function returnUserPool(callback) {
-    var query_statement = 'select * from user_status where grouped=0 AND status="online"';
+function getUserPool(callback) {
+    var query_statement = 'select * from get_available_partners';
     mysql.getConnection('CP_AS',function (err,conn) {
         if(err){
             console.log("connection failed");
@@ -89,7 +89,7 @@ function returnUserPool(callback) {
 }
 
 //update last online activity of user
-function updateLastOnline(curr_user,callback) {
+function updateLastOnlineUserPool(curr_user,callback) {
     var query_statement = 'update user_status set last_online=Now() where user_id=? AND status="online"';
     mysql.getConnection('CP_AS',function (err,conn) {
         if(err){
@@ -306,9 +306,9 @@ function getSession(user1,user2,course_id, callback) {
 
 //function to mark two matched users as grouped in user_pool(user_status) table
 function markAsGrouped(user1,user2,callback){
-    updateUserPoolAsGrouped(user1, function (result) {
+    UserPoolToGrouped(user1, function (result) {
         if(result){
-            updateUserPoolAsGrouped(user2,function (result1) {
+            UserPoolToGrouped(user2,function (result1) {
                 if(result1){
                     callback(true);
                 }else{
@@ -327,8 +327,7 @@ function pairUsers(user1,user2,course_id, callback) {
     getSession(user1,user2,course_id, function(valid){
         if(valid === false){
             console.log("inside pair Users, insert query");
-            var query_statement123 = "INSERT INTO user_groups(status,course_id,user1,user2) values('valid',?,?,?);";
-            var query = "UPDATE user_groups set status='valid' where course_id=? AND user1=? AND user2=?";
+            var query_statement123 = "INSERT INTO user_groups(course_id,user1,user2) values(?,?,?)";
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
                     console.log("connection failed");
@@ -336,34 +335,24 @@ function pairUsers(user1,user2,course_id, callback) {
                     console.log(query_statement123);
                     conn.query(query_statement123,[course_id,user1,user2],(err,result) => {
                         conn.release();
-                        console.log("second update");
                         if (err) {
                             callback(false);
                         }else{
-                            conn.query(query,[course_id,user1,user2],(err,result)=>{
-                                if(err){
-                                    console.log("second update did not work");
-                                    callback(false);
-                                }else{
-                                    console.log("second update successful");
-                                    console.log(result);
-                                    console.log("1 new paired session created between "+user1+" and "+user2);
-                                    markAsGrouped(user1,user2, function (result1) {
-                                        if(result1){
-                                            assignOppositeCohorts(user1,user2,course_id, function (result2) {
-                                                if(result2){
-                                                    callback(true);
-                                                }else{
-                                                    callback(false);
-                                                }
-                                            });
+                            console.log(result);
+                            console.log("1 new paired session created between "+user1+" and "+user2);
+                            markAsGrouped(user1,user2, function (result1) {
+                                if(result1){
+                                    assignOppositeCohorts(user1,user2,course_id, function (result2) {
+                                        if(result2){
+                                            callback(true);
                                         }else{
                                             callback(false);
                                         }
                                     });
+                                }else{
+                                    callback(false);
                                 }
                             });
-
                         }
                     });
                 }
@@ -408,7 +397,7 @@ router.post('/addToUserPool',function (req,res) {
 
 router.post('/UserPoolToGrouped',function (req,res) {
     var curr_user = req.body.curr_user;
-    updateUserPoolAsGrouped(curr_user,function (result) {
+    UserPoolToGrouped(curr_user,function (result) {
         if(result){
             res.send("success");
         }else{
@@ -419,7 +408,7 @@ router.post('/UserPoolToGrouped',function (req,res) {
 
 router.post('/UserPoolToOffline',function (req,res) {
     var curr_user = req.body.curr_user;
-    removeFromUserPool(curr_user,function (result) {
+    UserPoolToOffline(curr_user,function (result) {
         if(result){
             res.send("success");
         }else{
@@ -430,7 +419,7 @@ router.post('/UserPoolToOffline',function (req,res) {
 
 router.post('/getUserPool',function (req,res) {
 
-    returnUserPool(function (result) {
+    getUserPool(function (result) {
         if(result !== 0){
             res.send(result);
         }
@@ -453,7 +442,7 @@ router.post('/getPairId',function (req,res) {
 
 router.post('/updateLastOnlineUserPool',function (req,res) {
     var curr_user = req.body.curr_user;
-    updateLastOnline(curr_user,function (result) {
+    updateLastOnlineUserPool(curr_user,function (result) {
         if(result){
             res.send("success");
         }else{

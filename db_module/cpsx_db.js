@@ -1,14 +1,14 @@
 const mysql = require('mysql');
 
 const cpsx_db_config = {
-    host: 'localhost',
+    host: '54.156.197.224',
     user: 'root',
     password: 'edx',
     database: 'collab_assess'
 };
 
 const edxapp_db_config = {
-    host: 'localhost',
+    host: '54.156.197.224',
     user: 'root',
     password: 'edx',
     database: 'edxapp'
