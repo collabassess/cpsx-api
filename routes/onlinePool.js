@@ -132,8 +132,44 @@ function getGender(curr_user,callback) {
     });
 }
 
-//matching users based on who is online and the matching criteria, currently only gender
-function getGenderBasedPair(curr_user,callback) {
+//matching users based on who is online and the matching criteria,same gender
+function getGenderBasedPair_Homogeneous(curr_user,callback) {
+    getGender(curr_user,function (gender) {
+        if(gender !== 0){
+            var gender_partner = '';
+            if(gender === 'male'){
+                gender_partner = 'male';
+            }else{
+                gender_partner = 'female';
+            }
+            var query_statement = 'select user_id from get_available_partners where gender=?';
+            mysql.getConnection('CP_AS',function (err,conn) {
+                if(err){
+                    console.log("connection failed");
+                }else{
+                    conn.query(query_statement,[gender_partner],(err,rows) => {
+                        conn.release();
+                        if (err) {
+                            callback("err");
+                        }else{
+                            if(rows.length == 0){
+                                callback("err");
+                            }else{
+                                console.log(rows);
+                                callback(JSON.stringify(rows));
+                            }
+                        }
+                    });
+                }
+            });
+        }else{
+            callback("user not present in database");
+        }
+    });
+}
+
+//matching users based on who is online and the matching criteria,opposite gender
+function getGenderBasedPair_Heterogeneous(curr_user,callback) {
     getGender(curr_user,function (gender) {
         if(gender !== 0){
             var gender_partner = '';
@@ -164,6 +200,30 @@ function getGenderBasedPair(curr_user,callback) {
             });
         }else{
             callback("user not present in database");
+        }
+    });
+}
+
+//matching users based on who is online and the matching criteria, fist come first serve(fcfs)
+function getPair_FCFS(curr_user,callback) {
+    var query_statement = 'select user_id from get_available_partners';
+    mysql.getConnection('CP_AS',function (err,conn) {
+        if(err){
+            console.log("connection failed");
+        }else{
+            conn.query(query_statement,(err,rows) => {
+                conn.release();
+                if (err) {
+                    callback("err");
+                }else{
+                    if(rows.length == 0){
+                        callback("err");
+                    }else{
+                        console.log(rows);
+                        callback(JSON.stringify(rows));
+                    }
+                }
+            });
         }
     });
 }
@@ -429,14 +489,37 @@ router.post('/getUserPool',function (req,res) {
 
 router.post('/getPairId',function (req,res) {
     var curr_user = req.body.curr_user;
-    getGenderBasedPair(curr_user, function (result) {
-        if(result === "err"){
-            res.send("no partner available");
-        }else{
-            console.log(result);
-            res.send(result.toString());
-        }
-    });
+    var pairing_type = req.body.pairing_type;
+    if(pairing_type === "gender-homogeneous"){
+        getGenderBasedPair_Homogeneous(curr_user, function (result) {
+            if(result === "err"){
+                res.send("no partner available");
+            }else{
+                console.log(result);
+                res.send(result.toString());
+            }
+        });
+    }else if(pairing_type === "gender-heterogeneous"){
+        getGenderBasedPair_Heterogeneous(curr_user, function (result) {
+            if(result === "err"){
+                res.send("no partner available");
+            }else{
+                console.log(result);
+                res.send(result.toString());
+            }
+        });
+    }else// pairing_type == "FCFS"
+    {
+        getPair_FCFS(curr_user, function (result) {
+            if(result === "err"){
+                res.send("no partner available");
+            }else{
+                console.log(result);
+                res.send(result.toString());
+            }
+        });
+    }
+
 
 });
 
