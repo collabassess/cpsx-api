@@ -71,8 +71,8 @@
       <file leaf-file-name="onlinePool.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="207" column="42" lean-forward="false" selection-start-line="207" selection-start-column="42" selection-end-line="207" selection-end-column="42" />
+            <state relative-caret-position="179">
+              <caret line="563" column="39" lean-forward="false" selection-start-line="563" selection-start-column="39" selection-end-line="563" selection-end-column="39" />
               <folding>
                 <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
                 <element signature="n#!!block;n#UserPoolToGrouped#0" expanded="false" />
@@ -83,7 +83,6 @@
                 <element signature="n#!!block;n#getGenderBasedPair_Homogeneous#0" expanded="false" />
                 <element signature="n#!!block;n#getGenderBasedPair_Heterogeneous#0" expanded="false" />
                 <element signature="n#!!block;n#getPair_FCFS#0" expanded="false" />
-                <element signature="n#!!block;n#checkCohortSetting#0" expanded="false" />
                 <element signature="n#!!block;n#getCohortIDs#0" expanded="false" />
                 <element signature="n#!!block;n#assignOppositeCohorts#0" expanded="false" />
                 <element signature="n#!!block;n#assignCohort#0" expanded="false" />
@@ -98,9 +97,8 @@
                 <element signature="e#16864#17931#0" expanded="false" />
                 <element signature="e#17994#18215#0" expanded="false" />
                 <element signature="e#18263#18865#0" expanded="false" />
-                <element signature="e#18925#19484#0" expanded="false" />
-                <element signature="e#19538#19741#0" expanded="false" />
-                <element signature="e#19744#19793#0" expanded="false" />
+                <element signature="e#19578#19781#0" expanded="false" />
+                <element signature="e#19784#19833#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -150,6 +148,7 @@
       <find>removeFromUserPool</find>
       <find>returnUserPool</find>
       <find>user_groups</find>
+      <find>checkCohortSetting</find>
     </findStrings>
     <replaceStrings>
       <replace>getUserPool</replace>
@@ -293,16 +292,15 @@
       <workItem from="1521476574270" duration="492000" />
       <workItem from="1521556015916" duration="6741000" />
       <workItem from="1521666430829" duration="2661000" />
-      <workItem from="1522154267777" duration="1858000" />
+      <workItem from="1522154267777" duration="2410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69462000" />
+    <option name="totallyTimeSpent" value="70014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -312,7 +310,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2300995" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2300995" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -747,8 +745,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/onlinePool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="207" column="42" lean-forward="false" selection-start-line="207" selection-start-column="42" selection-end-line="207" selection-end-column="42" />
+        <state relative-caret-position="179">
+          <caret line="563" column="39" lean-forward="false" selection-start-line="563" selection-start-column="39" selection-end-line="563" selection-end-column="39" />
           <folding>
             <element signature="n#!!block;n#addToUserPool#0" expanded="false" />
             <element signature="n#!!block;n#UserPoolToGrouped#0" expanded="false" />
@@ -759,7 +757,6 @@
             <element signature="n#!!block;n#getGenderBasedPair_Homogeneous#0" expanded="false" />
             <element signature="n#!!block;n#getGenderBasedPair_Heterogeneous#0" expanded="false" />
             <element signature="n#!!block;n#getPair_FCFS#0" expanded="false" />
-            <element signature="n#!!block;n#checkCohortSetting#0" expanded="false" />
             <element signature="n#!!block;n#getCohortIDs#0" expanded="false" />
             <element signature="n#!!block;n#assignOppositeCohorts#0" expanded="false" />
             <element signature="n#!!block;n#assignCohort#0" expanded="false" />
@@ -774,9 +771,8 @@
             <element signature="e#16864#17931#0" expanded="false" />
             <element signature="e#17994#18215#0" expanded="false" />
             <element signature="e#18263#18865#0" expanded="false" />
-            <element signature="e#18925#19484#0" expanded="false" />
-            <element signature="e#19538#19741#0" expanded="false" />
-            <element signature="e#19744#19793#0" expanded="false" />
+            <element signature="e#19578#19781#0" expanded="false" />
+            <element signature="e#19784#19833#0" expanded="false" />
           </folding>
         </state>
       </provider>

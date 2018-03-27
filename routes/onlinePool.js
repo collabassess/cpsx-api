@@ -561,6 +561,7 @@ router.post('/updateToDefaultCohort',function (req,res) {
     checkCohortSetting(course_id, function (result) {
         if(result){
             getCohortIDs(course_id, function (id_string) {
+                console.log(id_string);
                 var IDs = JSON.parse(id_string);
                 assignCohort(user,IDs.cohort0, function (result_cohort) {
                     if(result_cohort){
