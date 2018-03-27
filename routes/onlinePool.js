@@ -558,7 +558,7 @@ router.post('/pairUsers',function (req,res) {
 });
 
 router.post('/updateToDefaultCohort',function (req,res) {
-    var user = req.body.user;
+    var user = req.body.curr_user;
     var course_id = req.body.course_id;
     checkCohortSetting(course_id, function (result) {
         if(result){
