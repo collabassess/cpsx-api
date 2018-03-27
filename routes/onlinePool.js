@@ -487,7 +487,7 @@ router.post('/getUserPool',function (req,res) {
 
 });
 
-router.post('/getPairId',function (req,res) {
+router.post('/getAvailablePartners',function (req,res) {
     var curr_user = req.body.curr_user;
     var pairing_type = req.body.pairing_type;
     if(pairing_type === "gender-homogeneous"){
