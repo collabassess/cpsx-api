@@ -142,7 +142,7 @@ function getGenderBasedPair_Homogeneous(curr_user,callback) {
             }else{
                 gender_partner = 'female';
             }
-            var query_statement = 'select user_id from get_available_partners where gender=?';
+            var query_statement = 'select * from get_available_partners where gender=?';
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
                     console.log("connection failed");
@@ -178,7 +178,7 @@ function getGenderBasedPair_Heterogeneous(curr_user,callback) {
             }else{
                 gender_partner = 'male';
             }
-            var query_statement = 'select user_id from get_available_partners where gender=?';
+            var query_statement = 'select * from get_available_partners where gender=?';
             mysql.getConnection('CP_AS',function (err,conn) {
                 if(err){
                     console.log("connection failed");
@@ -206,7 +206,7 @@ function getGenderBasedPair_Heterogeneous(curr_user,callback) {
 
 //matching users based on who is online and the matching criteria, fist come first serve(fcfs)
 function getPair_FCFS(curr_user,callback) {
-    var query_statement = 'select user_id from get_available_partners';
+    var query_statement = 'select * from get_available_partners';
     mysql.getConnection('CP_AS',function (err,conn) {
         if(err){
             console.log("connection failed");
