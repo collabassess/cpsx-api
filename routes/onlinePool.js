@@ -313,6 +313,7 @@ function assignOppositeCohorts(user1,user2,course_id,callback){
 
 //function to assign default cohorts to users
 function assignCohort(user,cohort_id,callback){
+    console.log("setting "+user+" to cohort "+cohort_id);
     var update_query = "update course_groups_cohortmembership set course_user_group_id=? where user_id=?";
     var update_query1 = "update course_groups_courseusergroup_users set courseusergroup_id=? where user_id=?";
 
@@ -326,6 +327,7 @@ function assignCohort(user,cohort_id,callback){
                     throw err;
                 }else{
                     conn.query(update_query1,[cohort_id,user],(err,result) => {
+                        console.log(result);
                         conn.release();
                         if (err) {
                             throw err;
