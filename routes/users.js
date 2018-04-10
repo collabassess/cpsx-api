@@ -94,6 +94,7 @@ router.post('/getRoom', function(req, res) {
     var curr_user = req.body.curr_user;
     getUserRoom(curr_user,function (room_value) {
         res.send(room_value);
+        res.status(200).end();
     });
 });
 
@@ -111,10 +112,12 @@ router.post("/initializeRoom",function (req,res) {
                     console.log(final_room);
                     console.log("final statement");
                     res.send(final_room);
+                    res.status(200).end();
                 });
             });
-        }else{
+        }else {
             res.send(room_value);
+            res.status(200).end();
         }
     });
 

@@ -454,6 +454,7 @@ router.post('/addToUserPool',function (req,res) {
         }else{
             res.send("failure");
         }
+        res.status(200).end();
     });
 });
 
@@ -465,6 +466,7 @@ router.post('/UserPoolToGrouped',function (req,res) {
         }else{
             res.send("failure");
         }
+        res.status(200).end();
     });
 });
 
@@ -476,6 +478,7 @@ router.post('/UserPoolToOffline',function (req,res) {
         }else{
             res.send("failure");
         }
+        res.status(200).end();
     });
 });
 
@@ -485,6 +488,7 @@ router.post('/getUserPool',function (req,res) {
         if(result !== 0){
             res.send(result);
         }
+        res.status(200).end();
     });
 
 });
@@ -500,6 +504,7 @@ router.post('/getAvailablePartners',function (req,res) {
                 console.log(result);
                 res.send(result.toString());
             }
+            res.status(200).end();
         });
     }else if(pairing_type === "gender-heterogeneous"){
         getGenderBasedPair_Heterogeneous(curr_user, function (result) {
@@ -509,6 +514,7 @@ router.post('/getAvailablePartners',function (req,res) {
                 console.log(result);
                 res.send(result.toString());
             }
+            res.status(200).end();
         });
     }else// pairing_type == "FCFS"
     {
@@ -519,6 +525,7 @@ router.post('/getAvailablePartners',function (req,res) {
                 console.log(result);
                 res.send(result.toString());
             }
+            res.status(200).end();
         });
     }
 
@@ -533,6 +540,7 @@ router.post('/updateLastOnlineUserPool',function (req,res) {
         }else{
             res.send("failure");
         }
+        res.status(200).end();
     });
 });
 
@@ -548,12 +556,14 @@ router.post('/pairUsers',function (req,res) {
                 }else{
                     res.send("NaN");
                 }
+                res.status(200).end();
             });
         }else if(result === false){
             res.send("something went wrong");
         }else{
             res.send(String(result));
         }
+        res.status(200).end();
     });
 });
 
@@ -567,9 +577,11 @@ router.post('/updateToDefaultCohort',function (req,res) {
                 var IDs = JSON.parse(id_string);
                 assignCohort(user,IDs.cohort0, function (result_cohort) {
                     if(result_cohort){
-                        res.send("success")
+                        res.send("success");
+                        res.status(200).end();
                     }else{
-                        res.send("failure")
+                        res.send("failure");
+                        res.status(200).end();
                     }
                 });
             });
@@ -583,6 +595,7 @@ router.post('/destroySession', function (req,res) {
     var course_id = req.body.course_id;
     destroySession(user1,user2,course_id, function (result) {
         res.send(result);
+        res.status(200).end();
     });
 });
 // router.post('/isCohorted',function (req,res) {
