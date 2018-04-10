@@ -14,6 +14,7 @@ function getUserRoom(curr_user,callback){
         }
         else {
             conn.query(query_statment, [curr_user, curr_user], (err, rows) => {
+                conn.release();
                 if (err) {
                     console.log("error: ", err);
                     throw err;
