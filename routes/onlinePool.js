@@ -484,6 +484,8 @@ router.post('/getUserPool',function (req,res) {
     getUserPool(function (result) {
         if(result !== 0){
             res.send(result);
+        }else{
+            res.send("Pool empty");
         }
     });
 
