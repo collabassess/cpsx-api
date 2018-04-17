@@ -108,6 +108,102 @@ function updateLastOnlineUserPool(curr_user,callback) {
     });
 }
 
+//get demo shark jet variable for the curr_user
+function getDemoSharkJet(curr_user,callback) {
+    var query_statement = 'select demo_shark_jet from user_info where user_id=? ';
+    mysql.getConnection('CP_AS',function (err,conn) {
+        if(err){
+            console.log("connection failed");
+        }else{
+            conn.query(query_statement,[curr_user],(err,rows) => {
+                conn.release();
+                if (err) {
+                    throw err;
+                }else{
+                    if(rows.length == 0){
+                        callback(0);
+                    }else{
+                        console.log("inside getDemoSharkJet function:"+rows);
+                        callback(rows[0].demo_shark_jet);
+                    }
+                }
+            });
+        }
+    });
+}
+
+//matching users based on who is online and the matching criteria,same gender
+function getDemoSharkJetBasedPair_Homogeneous(curr_user,callback) {
+    getDemoSharkJet(curr_user,function (sharkjet) {
+        if(sharkjet !== 0){
+            var sharkjet_partner = '';
+            if(sharkjet === 'jet'){
+                sharkjet_partner = 'jet';
+            }else{
+                sharkjet_partner = 'shark';
+            }
+            var query_statement = 'select * from get_available_partners where demo_shark_jet=? AND user_id!=?';
+            mysql.getConnection('CP_AS',function (err,conn) {
+                if(err){
+                    console.log("connection failed");
+                }else{
+                    conn.query(query_statement,[sharkjet_partner,curr_user],(err,rows) => {
+                        conn.release();
+                        if (err) {
+                            callback("err");
+                        }else{
+                            if(rows.length == 0){
+                                callback("err");
+                            }else{
+                                console.log(rows);
+                                callback(JSON.stringify(rows));
+                            }
+                        }
+                    });
+                }
+            });
+        }else{
+            callback("user not present in database");
+        }
+    });
+}
+
+//matching users based on who is online and the matching criteria,opposite gender
+function getDemoSharkJetBasedPair_Heterogeneous(curr_user,callback) {
+    getDemoSharkJet(curr_user,function (sharkjet) {
+        if(sharkjet !== 0){
+            var sharkjet_partner = '';
+            if(sharkjet === 'jet'){
+                sharkjet_partner = 'shark';
+            }else{
+                sharkjet_partner = 'jet';
+            }
+            var query_statement = 'select * from get_available_partners where demo_shark_jet=? AND user_id!=?';
+            mysql.getConnection('CP_AS',function (err,conn) {
+                if(err){
+                    console.log("connection failed");
+                }else{
+                    conn.query(query_statement,[sharkjet_partner,curr_user],(err,rows) => {
+                        conn.release();
+                        if (err) {
+                            callback("err");
+                        }else{
+                            if(rows.length == 0){
+                                callback("err");
+                            }else{
+                                console.log(rows);
+                                callback(JSON.stringify(rows));
+                            }
+                        }
+                    });
+                }
+            });
+        }else{
+            callback("user not present in database");
+        }
+    });
+}
+
 //get user gender
 function getGender(curr_user,callback) {
     var query_statement = 'select gender from user_info where user_id=? ';
@@ -494,7 +590,27 @@ router.post('/getUserPool',function (req,res) {
 router.post('/getAvailablePartners',function (req,res) {
     var curr_user = req.body.curr_user;
     var pairing_type = req.body.pairing_type;
-    if(pairing_type === "gender-homogeneous"){
+    if(pairing_type === "demoSharkJet-homogeneous"){
+        getDemoSharkJetBasedPair_Homogeneous(curr_user, function (result) {
+            if(result === "err"){
+                res.send("no partner available");
+            }else{
+                console.log(result);
+                res.send(result.toString());
+            }
+        });
+    }
+    else if(pairing_type === "demoSharkJet-homogeneous"){
+        getDemoSharkJetBasedPair_Heterogeneous(curr_user, function (result) {
+            if(result === "err"){
+                res.send("no partner available");
+            }else{
+                console.log(result);
+                res.send(result.toString());
+            }
+        });
+    }
+    else if(pairing_type === "gender-homogeneous"){
         getGenderBasedPair_Homogeneous(curr_user, function (result) {
             if(result === "err"){
                 res.send("no partner available");
@@ -503,7 +619,8 @@ router.post('/getAvailablePartners',function (req,res) {
                 res.send(result.toString());
             }
         });
-    }else if(pairing_type === "gender-heterogeneous"){
+    }
+    else if(pairing_type === "gender-heterogeneous"){
         getGenderBasedPair_Heterogeneous(curr_user, function (result) {
             if(result === "err"){
                 res.send("no partner available");
@@ -512,8 +629,8 @@ router.post('/getAvailablePartners',function (req,res) {
                 res.send(result.toString());
             }
         });
-    }else// pairing_type == "FCFS"
-    {
+    }
+    else{// pairing_type == "FCFS"
         getPair_FCFS(curr_user, function (result) {
             if(result === "err"){
                 res.send("no partner available");
@@ -523,8 +640,6 @@ router.post('/getAvailablePartners',function (req,res) {
             }
         });
     }
-
-
 });
 
 router.post('/updateLastOnlineUserPool',function (req,res) {

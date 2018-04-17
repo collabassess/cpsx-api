@@ -64,8 +64,40 @@ INSERT INTO user_info values(18,'female');
 INSERT INTO user_info values(19,'male');
 INSERT INTO user_info values(20,'female');
 
+alter table user_info change gender demo_shark_jet varchar(30) default NULL;
+select * from user_info;
 
 CREATE VIEW get_available_partners AS
-SELECT s.user_id,i.gender
-FROM user_status s, user_info i
-WHERE s.user_id = i.user_id AND s.status = 'online' AND s.grouped=False;
+SELECT s.user_id as user_id,i.demo_shark_jet as demo_shark_jet, a.`gender` as gender
+FROM user_status s, user_info i, edxapp.auth_userprofile a
+WHERE s.user_id = i.user_id
+AND i.user_id = a.`id`
+AND s.status = 'online'
+AND s.grouped=False;
+
+
+DROP TRIGGER after_gender_update;
+
+DELIMITER $$
+CREATE
+    TRIGGER `after_gender_update` AFTER UPDATE
+    ON `auth_userprofile`
+    FOR EACH ROW BEGIN
+        IF NEW.gender is not NULL
+            THEN UPDATE collab_assess.`user_info` SET gender=NEW.gender WHERE `user_id`=New.user_id;
+        END IF;
+END$$
+DELIMITER;
+
+DROP TRIGGER after_gender_insert;
+
+DELIMITER $$
+CREATE
+    TRIGGER `after_gender_insert` AFTER INSERT
+    ON `auth_userprofile`
+    FOR EACH ROW BEGIN
+        IF NEW.gender is not NULL
+            THEN UPDATE collab_assess.`user_info` SET gender=NEW.gender WHERE `user_id`=New.user_id;
+        END IF;
+END$$
+DELIMITER;
