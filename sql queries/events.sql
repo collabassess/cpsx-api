@@ -1,3 +1,6 @@
+--dump stuff
+mysqldump -uuser -ppassword -d -B --events --routines --triggers database_example > database_example.sql
+
 CREATE EVENT `user_status_offline`
 ON SCHEDULE EVERY 1 MINUTE
 ON COMPLETION NOT PRESERVE
@@ -15,7 +18,7 @@ DO
 UPDATE user_groups SET status="invalid" WHERE status='valid' AND created_at <= Now() - INTERVAL 180 Minute;
 
 
-//trigger
+--trigger
 DROP TRIGGER after_user_status_update;
 DELIMITER $$
 CREATE
@@ -28,7 +31,7 @@ CREATE
 END$$
 DELIMITER ;
 
-//trigger for gender table used in install script
+--trigger for gender table used in install script
 DROP TRIGGER edxapp.new_user_add_gender;
 DELIMITER $$
 CREATE
@@ -40,7 +43,7 @@ END$$
 DELIMITER ;
 CREATE TRIGGER new_user_add_gender AFTER INSERT ON auth_user FOR EACH ROW BEGIN INSERT INTO collab_assess.user_info values(New.id, ( case when round(rand()) = 1 Then 'male' else 'female' end));
 
-//script execute
+--script execute
 mysql -u root -pedx -Bse "insert into collab_assess.user_info select id, ( case when round(rand()) = 1 Then 'male' else 'female' end) from edxapp.auth_user;"
 
 CREATE TABLE user_status(
@@ -80,11 +83,11 @@ DROP TRIGGER after_gender_update;
 
 DELIMITER $$
 CREATE
-    TRIGGER `after_gender_update` AFTER UPDATE
-    ON `auth_userprofile`
+    TRIGGER after_gender_update AFTER UPDATE
+    ON edxapp.auth_userprofile
     FOR EACH ROW BEGIN
         IF NEW.gender is not NULL
-            THEN UPDATE collab_assess.`user_info` SET gender=NEW.gender WHERE `user_id`=New.user_id;
+            THEN UPDATE collab_assess.user_info SET gender=NEW.gender WHERE user_id=New.user_id;
         END IF;
 END$$
 DELIMITER;
@@ -93,11 +96,11 @@ DROP TRIGGER after_gender_insert;
 
 DELIMITER $$
 CREATE
-    TRIGGER `after_gender_insert` AFTER INSERT
-    ON `auth_userprofile`
+    TRIGGER after_gender_insert AFTER INSERT
+    ON auth_userprofile
     FOR EACH ROW BEGIN
         IF NEW.gender is not NULL
-            THEN UPDATE collab_assess.`user_info` SET gender=NEW.gender WHERE `user_id`=New.user_id;
+            THEN UPDATE collab_assess.user_info SET gender=NEW.gender WHERE user_id=New.user_id;
         END IF;
 END$$
 DELIMITER;
