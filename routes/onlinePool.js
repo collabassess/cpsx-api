@@ -3,6 +3,11 @@ var router = express.Router();
 
 var mysql = require('../db_module/cpsx_db').pool;
 
+// PSANKER AMENDMENT
+const DATABASES       = require("../db_module/cpsx_db").DATABASES;
+const DatabaseHandler = require("../db_module/cpsx_db").DatabaseHandler;
+
+const dbhandler = new DatabaseHandler();
 
 //add users to user_pool(user_status table)
 function addToUserPool(user, callback) {
@@ -27,6 +32,26 @@ function addToUserPool(user, callback) {
     });
 }
 
+// PSANKER AMENDMENT
+function addToUserPoolPromise(user) {
+    let queryStatement = "INSERT INTO user_status(user_id) values(?) ON DUPLICATE KEY UPDATE status=\"online\", last_online=Now(), grouped=False";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => dbhandler.query(connection, queryStatement, [user]))
+            .then((results, fields) => {
+                console.log(results);
+                console.log("1 record inserted/updated");
+                resolve(true);
+            })
+            .catch((err) => {
+                // No rejections, just boolean flag. Error gets logged and application stays active.
+                console.log(err);
+                resolve(false);
+            });
+    });
+}
+
 //update user_pool status of user as grouped, so that he doesn't show as available
 function UserPoolToGrouped(curr_user,callback) {
     var query_statement = 'update user_status set grouped=True where user_id=? AND status="online"';
@@ -47,6 +72,25 @@ function UserPoolToGrouped(curr_user,callback) {
     });
 }
 
+// PSANKER AMENDMENT
+function userPoolToGroupedPromise(currentUser) {
+    let queryStatement = "update user_status set grouped=True where user_id=? AND status=\"online\"";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser]))
+            .then((results, fields) => {
+                console.log(`${results.affectedRows} record${results.affectedRows !== 1 ? "s" : ""} updated`);
+                resolve(true);
+            })
+            .catch((err) => {
+                // No rejections, just boolean flag. Error gets logged and application stays active.
+                console.log(err);
+                resolve(false);
+            });
+    });
+}
+
 //remove user from user_pool online; In user_status table, turn the status to offline
 function UserPoolToOffline(curr_user,callback) {
     var query_statement = 'update user_status set status="offline" where user_id=? AND status="online"';
@@ -64,6 +108,25 @@ function UserPoolToOffline(curr_user,callback) {
                 }
             });
         }
+    });
+}
+
+// PSANKER AMENDMENT
+function userPoolToOfflinePromise(currentUser) {
+    let queryStatement = "update user_status set status=\"offline\" where user_id=? AND status=\"online\"";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser]))
+            .then((results, fields) => {
+                console.log(`${results.affectedRows} record${results.affectedRows !== 1 ? "s" : ""} updated`);
+                resolve(true);
+            })
+            .catch((err) => {
+                // No rejections, just boolean flag. Error gets logged and application stays active.
+                console.log(err);
+                resolve(false);
+            });
     });
 }
 
@@ -88,6 +151,27 @@ function getUserPool(callback) {
     });
 }
 
+// PSANKER AMENDMENT
+function getUserPoolPromise() {
+    let queryStatement = "select * from get_available_partners";
+    let response = "";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => dbhandler.query(connection, queryStatement))
+            .then((rows, fields) => {
+                if (rows.length > 0) {
+                    response = JSON.stringify(rows);
+                }
+
+                resolve(response);
+            })
+            .catch((err) => {
+                return reject(err);
+            });
+    });
+}
+
 //update last online activity of user
 function updateLastOnlineUserPool(curr_user,callback) {
     var query_statement = 'update user_status set last_online=Now() where user_id=? AND status="online"';
@@ -105,6 +189,25 @@ function updateLastOnlineUserPool(curr_user,callback) {
                 }
             });
         }
+    });
+}
+
+// PSANKER AMENDMENT
+function updateLastOnlineUserPoolPromise(currentUser) {
+    let queryStatement = "update user_status set last_online=Now() where user_id=? AND status=\"online\"";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser]))
+            .then((results, fields) => {
+                console.log(`${results.affectedRows} record${results.affectedRows !== 1 ? "s" : ""} updated`);
+                resolve(true);
+            })
+            .catch((err) => {
+                // No rejections, just boolean flag. Error gets logged and application stays active.
+                console.log(err);
+                resolve(false);
+            });
     });
 }
 
@@ -347,6 +450,132 @@ function checkCohortSetting(course_id,callback){
     });
 }
 
+// PSANKER AMENDMENT
+function isCohorted(courseId) {
+    let queryStatement = "SELECT is_cohorted FROM course_groups_coursecohortssettings WHERE course_id=?";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.EDX)
+            .then(connection => dbhandler.query(connection, queryStatement, [courseId]))
+            .then((results, fields) => {
+                // Since edX only has this field as either 0 or 1, take advantage of type coercion and !!
+                resolve(!!results[0].is_cohorted);
+            })
+            .catch(err => reject(err));
+    });
+}
+
+// PSANKER ADDITION
+function getDefaultCohort(courseId) {
+    let queryStatement = "SELECT * course_groups_courseusergroup INNER JOIN course_groups_coursecohort ";
+    queryStatement    += "ON course_groups_courseusergroup.id = course_groups_coursecohort.id ";
+    queryStatement    += "WHERE course_id=? AND assignment_type=\"random\"";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.EDX)
+            .then(connection => dbhandler.query(connection, queryStatement, [courseId]))
+            .then((results, fields) => {
+                if (results.length !== 1) {
+                    return reject("Improperly configured cohorts. There should only be one automatic group per cohorted course.");
+                } else {
+                    resolve(results[0].course_user_group_id);
+                }
+            })
+            .catch(err => reject(err));
+    });
+}
+
+// PSANKER ADDITION
+function getPartneredCohorts(courseId) {
+    let queryStatement = "SELECT * course_groups_courseusergroup INNER JOIN course_groups_coursecohort ";
+    queryStatement    += "ON course_groups_courseusergroup.id = course_groups_coursecohort.id ";
+    queryStatement    += "WHERE course_id=? AND assignment_type=\"manual\"";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.EDX)
+            .then(connection => dbhandler.query(connection, queryStatement, [courseId]))
+            .then((results, fields) => {
+                if (results.length !== 2) {
+                    return reject("Improperly configured cohorts. There should be only 2 cohorts configured for partnering.");
+                } else {
+                    resolve([results[0].course_user_group_id, results[1].course_user_group_id]);
+                }
+            })
+            .catch(err => reject(err));
+    });
+}
+
+// PSANKER ADDITION
+//
+// cohort0: The default cohort for the course
+// cohort1: One of the partnered cohorts
+// cohort2: The other partnered cohort
+function getCohortConfiguration(courseId) {
+    let config = {};
+
+    return new Promise((resolve, reject) => {
+        isCohorted(courseId)
+            .then(cohorted => {
+                if (!cohorted) {
+                    return reject(`Course "${courseId}" is not cohorted. Check your edX configuration in the LMS.`);
+                }
+
+                return getDefaultCohort(courseId);
+            })
+            .then(defaultId => {
+                config.cohort0 = defaultId;
+
+                return getPartneredCohorts(courseId);
+            })
+            .then(partneredIds => {
+                config.cohort1 = partneredIds[0];
+                config.cohort2 = partneredIds[1];
+
+                resolve(JSON.stringify(config));
+            })
+            .catch(err => reject(err));
+    });
+}
+
+// TODO: Move db query functions to separate source directory for logic only, and then include logic to get partner for user ID
+//
+// partnerID: The integral value stored in the EDX DB that represents the user
+// problemID: The "block-v1:..." string that represents the particular block
+function getPartnerAnswerForProblem(partnerID, problemID) {
+    let queryStatement = `SELECT state FROM courseware_studentmodule WHERE module_id="${problemID}" AND student_id=${partnerID}`,
+        blockPattern   = /problem\+block\@(\w+)/g,
+        shortID        = "";
+    
+
+    return new Promise((resolve, reject) => {
+        let match = blockPattern.exec(problemID);
+
+        if (match != null) {
+            shortID = match[1];
+        } else {
+            return reject(`Could not determine the short ID of block: ${problemID}`);
+        }
+
+        dbhandler.connect(DATABASES.EDX)
+            .then(connection => dbhandler.query(connection, queryStatement))
+            .then((results, fields) => {
+                let cmapRow = -1;
+
+                for (let i = 0; i < results.length; ++i) {
+                    if (!!results[i].correct_map) { // the correct_map object has been found, which means this is the correct row
+                        cmapRow = i;
+                    }
+                }
+
+                if (cmapRow === -1) {
+                    return reject(`Answer mapping for "${shortID}" not found. Perhaps the partner hasn't submitted yet?`);
+                } else {
+                    resolve(JSON.stringify(results[cmapRow].student_answers[`${shortID}_2_1`]));
+                }
+            });
+    });
+}
+
 //function to get available cohort ids for a particular course
 function getCohortIDs(course_id, callback){
     var query_statement = "SELECT id FROM course_groups_courseusergroup WHERE course_id = ?";
@@ -472,7 +701,7 @@ function markAsGrouped(user1,user2,callback){
                 }else{
                     callback(false);
                 }
-            })
+            });
         }else{
             callback(false);
         }
@@ -684,9 +913,9 @@ router.post('/updateToDefaultCohort',function (req,res) {
                 var IDs = JSON.parse(id_string);
                 assignCohort(user,IDs.cohort0, function (result_cohort) {
                     if(result_cohort){
-                        res.send("success")
+                        res.send("success");
                     }else{
-                        res.send("failure")
+                        res.send("failure");
                     }
                 });
             });

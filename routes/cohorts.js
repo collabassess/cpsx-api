@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var mysql = require('../db_module/cpsx_db').pool;
+const DatabaseHandler = require("../db_module/cpsx_db").DatabaseHandler;
+const dbhandler = new DatabaseHandler();
 
 
 //add users to user_pool(user_status table)

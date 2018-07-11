@@ -3,6 +3,11 @@ var router = express.Router();
 
 var mysql = require('../db_module/cpsx_db').pool;
 
+// PSANKER AMENDMENT
+const DatabaseHandler = require("../db_module/cpsx_db").DatabaseHandler;
+const DATABASES       = require("../db_module/cpsx_db").DATABASES;
+
+const dbhandler = new DatabaseHandler();
 
 function getUserRoom(curr_user,callback){
     var room = '';
@@ -25,6 +30,27 @@ function getUserRoom(curr_user,callback){
                 }
             });
         }
+    });
+}
+
+// PSANKER AMENDMENT
+function getUserRoomPromise(currentUser) {
+    let queryStatement = "SELECT * from user_groups WHERE (user1= ? OR user2= ?) AND status=\"valid\""; 
+    let room = "";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser, currentUser]))
+            .then((rows, fields) => {
+                if (rows.length > 0) {
+                    resolve(String(rows[0].session_id));
+                } else {
+                    resolve("NaN");
+                }
+            })
+            .catch((err) => {
+                return reject(err);
+            });
     });
 }
 
@@ -88,14 +114,63 @@ function upsertRoomUser(curr_user,callback) {
         }
 
     });
-
 }
+
+// PSANKER AMENDMENT
+function upsertRoomUserPromise(currentUser) {
+    let queryStatement = "SELECT * FROM user_group WHERE user1 IS NULL OR user2 IS NULL";
+
+    return new Promise((resolve, reject) => {
+        dbhandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => dbhandler.queryNoRelease(connection, queryStatement))
+            .then((connection, rows, fields) => {
+                let nextQuery = "",
+                    args      = [];
+
+                if (rows.length === 0) {
+                    nextQuery = "INSERT INTO user_groups(course_id,user1) VALUES (?,?)"; 
+                    args = ["1", currentUser];
+                } else {
+                    rows.forEach((row) => {
+                        if (row.user1 === null){
+                            nextQuery += "UPDATE user_groups SET user1=? WHERE session_id=? && course_id=?;\n";
+                            args.concat([currentUser, row.session_id, row.course_id]);
+                        } else {
+                            nextQuery += "UPDATE user_groups SET user2=? WHERE session_id=? && course_id=?;\n";
+                            args.concat([currentUser, row.session_id, row.course_id]);
+                        }
+                    });
+                }
+
+                return dbhandler.query(connection, nextQuery, args);
+            })
+            .then((results, fields) => {
+                resolve("init");
+            })
+            .catch((err) => {
+                return reject(err);
+            });
+    });
+}
+
 /* POST users room. */
 router.post('/getRoom', function(req, res) {
     var curr_user = req.body.curr_user;
     getUserRoom(curr_user,function (room_value) {
         res.send(room_value);
     });
+});
+
+// PSANKER AMENDMENT -- Will not fire until #postPromise is renamed to #post
+router.postPromise("/getRoom", (req, res) => {
+    let curr_user = req.body.curr_user;
+
+    getUserRoomPromise(curr_user)
+        .then(response => {
+            res.send(response);
+        }, err => {
+            console.log(err); 
+        });
 });
 
 router.post("/initializeRoom",function (req,res) {
