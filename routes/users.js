@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var mysql = require('../db_module/cpsx_db').pool;
+var mysql = require('../lib/database').pool;
 
 // PSANKER AMENDMENT
-const DatabaseHandler = require("../db_module/cpsx_db").DatabaseHandler;
-const DATABASES       = require("../db_module/cpsx_db").DATABASES;
+const DatabaseHandler = require("../lib/database").DatabaseHandler;
+const DATABASES       = require("../lib/database").DATABASES;
 
 const dbhandler = new DatabaseHandler();
 
