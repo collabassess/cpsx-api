@@ -48,7 +48,7 @@ function getUserRoomPromise(currentUser) {
                     resolve("NaN");
                 }
             })
-            .catch((err) => {
+            .catch(err => {
                 return reject(err);
             });
     });
@@ -162,16 +162,16 @@ router.post('/getRoom', function(req, res) {
 });
 
 // PSANKER AMENDMENT -- Will not fire until #postPromise is renamed to #post
-router.postPromise("/getRoom", (req, res) => {
-    let curr_user = req.body.curr_user;
-
-    getUserRoomPromise(curr_user)
-        .then(response => {
-            res.send(response);
-        }, err => {
-            console.log(err); 
-        });
-});
+// router.postPromise("/getRoom", (req, res) => {
+//     let curr_user = req.body.curr_user;
+// 
+//     getUserRoomPromise(curr_user)
+//         .then(response => {
+//             res.send(response);
+//         }, err => {
+//             console.log(err); 
+//         });
+// });
 
 router.post("/initializeRoom",function (req,res) {
     var curr_user = req.body.curr_user;
@@ -195,7 +195,5 @@ router.post("/initializeRoom",function (req,res) {
     });
 
 });
-
-
 
 module.exports = router;

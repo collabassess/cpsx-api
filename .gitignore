@@ -1,1 +1,4 @@
 node_modules/
+
+# Sensitive configuration information
+db_credentials.js
