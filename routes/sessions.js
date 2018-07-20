@@ -2,7 +2,7 @@ const express = require("express"),
       debug   = require("debug")("cpsx-api:server"),
       router  = express.Router(),
       
-      SessionManager = require("../lib/sessions");
+      SessionManager = require("../lib/sessionmanager");
 
 router.post("/getPartner", (req, res) => {
     let currentUser = req.body.curr_user,
