@@ -61,8 +61,8 @@ def get_partner(user):
     response = post("/sessions/getPartner", data)
     resobj   = json.loads(response.text)
 
-    if resobj["ans"]:
-        return int(resobj["ans"])
+    if resobj["partner"]:
+        return int(resobj["partner"])
     else:
         print(resobj["err"])
         return -1
