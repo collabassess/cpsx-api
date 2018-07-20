@@ -7,8 +7,6 @@ var mysql = require('../lib/database').pool;
 const DATABASES       = require("../lib/database").DATABASES;
 const DatabaseHandler = require("../lib/database").DatabaseHandler;
 
-const dbhandler = new DatabaseHandler();
-
 //add users to user_pool(user_status table)
 function addToUserPool(user, callback) {
     var query_statement = 'INSERT INTO user_status(user_id) values(?) ON DUPLICATE KEY UPDATE status="online", last_online=Now(), grouped=False';
@@ -37,8 +35,8 @@ function addToUserPoolPromise(user) {
     let queryStatement = "INSERT INTO user_status(user_id) values(?) ON DUPLICATE KEY UPDATE status=\"online\", last_online=Now(), grouped=False";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.COLLAB_ASSESS)
-            .then((connection) => dbhandler.query(connection, queryStatement, [user]))
+        DatabaseHandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => DatabaseHandler.query(connection, queryStatement, [user]))
             .then((results, fields) => {
                 console.log(results);
                 console.log("1 record inserted/updated");
@@ -77,8 +75,8 @@ function userPoolToGroupedPromise(currentUser) {
     let queryStatement = "update user_status set grouped=True where user_id=? AND status=\"online\"";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.COLLAB_ASSESS)
-            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser]))
+        DatabaseHandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => DatabaseHandler.query(connection, queryStatement, [currentUser]))
             .then((results, fields) => {
                 console.log(`${results.affectedRows} record${results.affectedRows !== 1 ? "s" : ""} updated`);
                 resolve(true);
@@ -116,8 +114,8 @@ function userPoolToOfflinePromise(currentUser) {
     let queryStatement = "update user_status set status=\"offline\" where user_id=? AND status=\"online\"";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.COLLAB_ASSESS)
-            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser]))
+        DatabaseHandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => DatabaseHandler.query(connection, queryStatement, [currentUser]))
             .then((results, fields) => {
                 console.log(`${results.affectedRows} record${results.affectedRows !== 1 ? "s" : ""} updated`);
                 resolve(true);
@@ -157,8 +155,8 @@ function getUserPoolPromise() {
     let response = "";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.COLLAB_ASSESS)
-            .then((connection) => dbhandler.query(connection, queryStatement))
+        DatabaseHandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => DatabaseHandler.query(connection, queryStatement))
             .then((rows, fields) => {
                 if (rows.length > 0) {
                     response = JSON.stringify(rows);
@@ -197,8 +195,8 @@ function updateLastOnlineUserPoolPromise(currentUser) {
     let queryStatement = "update user_status set last_online=Now() where user_id=? AND status=\"online\"";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.COLLAB_ASSESS)
-            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser]))
+        DatabaseHandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => DatabaseHandler.query(connection, queryStatement, [currentUser]))
             .then((results, fields) => {
                 console.log(`${results.affectedRows} record${results.affectedRows !== 1 ? "s" : ""} updated`);
                 resolve(true);
@@ -455,8 +453,8 @@ function isCohorted(courseId) {
     let queryStatement = "SELECT is_cohorted FROM course_groups_coursecohortssettings WHERE course_id=?";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.EDX)
-            .then(connection => dbhandler.query(connection, queryStatement, [courseId]))
+        DatabaseHandler.connect(DATABASES.EDX)
+            .then(connection => DatabaseHandler.query(connection, queryStatement, [courseId]))
             .then((results, fields) => {
                 // Since edX only has this field as either 0 or 1, take advantage of type coercion and !!
                 resolve(!!results[0].is_cohorted);
@@ -472,8 +470,8 @@ function getDefaultCohort(courseId) {
     queryStatement    += "WHERE course_id=? AND assignment_type=\"random\"";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.EDX)
-            .then(connection => dbhandler.query(connection, queryStatement, [courseId]))
+        DatabaseHandler.connect(DATABASES.EDX)
+            .then(connection => DatabaseHandler.query(connection, queryStatement, [courseId]))
             .then((results, fields) => {
                 if (results.length !== 1) {
                     return reject("Improperly configured cohorts. There should only be one automatic group per cohorted course.");
@@ -492,8 +490,8 @@ function getPartneredCohorts(courseId) {
     queryStatement    += "WHERE course_id=? AND assignment_type=\"manual\"";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.EDX)
-            .then(connection => dbhandler.query(connection, queryStatement, [courseId]))
+        DatabaseHandler.connect(DATABASES.EDX)
+            .then(connection => DatabaseHandler.query(connection, queryStatement, [courseId]))
             .then((results, fields) => {
                 if (results.length !== 2) {
                     return reject("Improperly configured cohorts. There should be only 2 cohorts configured for partnering.");
@@ -556,8 +554,8 @@ function getPartnerAnswerForProblem(partnerID, problemID) {
             return reject(`Could not determine the short ID of block: ${problemID}`);
         }
 
-        dbhandler.connect(DATABASES.EDX)
-            .then(connection => dbhandler.query(connection, queryStatement))
+        DatabaseHandler.connect(DATABASES.EDX)
+            .then(connection => DatabaseHandler.query(connection, queryStatement))
             .then((results, fields) => {
                 let cmapRow = -1;
 
