@@ -1,4 +1,5 @@
 node_modules/
+.vscode/
 
 # Sensitive configuration information
 db_credentials.js

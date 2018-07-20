@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var mysql = require('../db_module/cpsx_db').pool;
-const DatabaseHandler = require("../db_module/cpsx_db").DatabaseHandler;
+var mysql = require('../lib/database').pool;
+const DatabaseHandler = require("../lib/database").DatabaseHandler;
 const dbhandler = new DatabaseHandler();
 
 

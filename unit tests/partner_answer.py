@@ -128,3 +128,6 @@ class PartnerAPITests(unittest.TestCase):
         self.assertEqual(m * x + partner1Answer, partner2Answer * x + b)
 
         end_session(user1, user2, course)
+
+if __name__ == "__main__":
+    unittest.main()
