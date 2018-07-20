@@ -7,8 +7,6 @@ var mysql = require('../lib/database').pool;
 const DatabaseHandler = require("../lib/database").DatabaseHandler;
 const DATABASES       = require("../lib/database").DATABASES;
 
-const dbhandler = new DatabaseHandler();
-
 function getUserRoom(curr_user,callback){
     var room = '';
     var query_statment = 'SELECT * from user_groups WHERE (user1= ? OR user2= ?) AND status="valid"';
@@ -39,8 +37,8 @@ function getUserRoomPromise(currentUser) {
     let room = "";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.COLLAB_ASSESS)
-            .then((connection) => dbhandler.query(connection, queryStatement, [currentUser, currentUser]))
+        DatabaseHandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => DatabaseHandler.query(connection, queryStatement, [currentUser, currentUser]))
             .then((rows, fields) => {
                 if (rows.length > 0) {
                     resolve(String(rows[0].session_id));
@@ -121,8 +119,8 @@ function upsertRoomUserPromise(currentUser) {
     let queryStatement = "SELECT * FROM user_group WHERE user1 IS NULL OR user2 IS NULL";
 
     return new Promise((resolve, reject) => {
-        dbhandler.connect(DATABASES.COLLAB_ASSESS)
-            .then((connection) => dbhandler.queryNoRelease(connection, queryStatement))
+        DatabaseHandler.connect(DATABASES.COLLAB_ASSESS)
+            .then((connection) => DatabaseHandler.queryNoRelease(connection, queryStatement))
             .then((connection, rows, fields) => {
                 let nextQuery = "",
                     args      = [];
@@ -142,7 +140,7 @@ function upsertRoomUserPromise(currentUser) {
                     });
                 }
 
-                return dbhandler.query(connection, nextQuery, args);
+                return DatabaseHandler.query(connection, nextQuery, args);
             })
             .then((results, fields) => {
                 resolve("init");

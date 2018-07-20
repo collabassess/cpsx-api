@@ -3,8 +3,6 @@ var router = express.Router();
 
 var mysql = require('../lib/database').pool;
 const DatabaseHandler = require("../lib/database").DatabaseHandler;
-const dbhandler = new DatabaseHandler();
-
 
 //add users to user_pool(user_status table)
 function addToUserPool(user, callback) {
