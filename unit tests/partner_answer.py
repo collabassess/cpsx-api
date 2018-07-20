@@ -59,6 +59,7 @@ def get_partner(user):
     data = {"curr_user": user}
 
     response = post("/sessions/getPartner", data)
+    print(response.text)
     resobj   = json.loads(response.text)
 
     if resobj["partner"]:
