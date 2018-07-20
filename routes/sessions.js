@@ -1,4 +1,5 @@
 const express = require("express"),
+      debug   = require("debug")("cpsx-api:server"),
       router  = express.Router(),
       
       SessionManager = require("../lib/sessions");
@@ -13,6 +14,7 @@ router.post("/getPartner", (req, res) => {
             res.send(JSON.stringify(retval));
         })
         .catch(err => {
+            debug(err);
             retval.err = err;
             res.send(JSON.stringify(retval));
         });
@@ -30,6 +32,7 @@ router.post("/getPartnerAnswerForProblem", (req, res) => {
             res.send(JSON.stringify(retval));
         })
         .catch(err => {
+            debug(err);
             retval.err = err;
             res.send(JSON.stringify(retval));
         });
@@ -49,8 +52,9 @@ router.post("/testInsertValues", (req, res) => {
             res.send(JSON.stringify({success: true}));
         })
         .catch(err => {
+            debug(err);
             res.send(JSON.stringify({success: false}));
-        })
+        });
 });
 
 module.exports = router;

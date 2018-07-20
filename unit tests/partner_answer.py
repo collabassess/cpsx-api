@@ -26,12 +26,22 @@ def post(uri, data):
 
 def add_user_to_pool(user):
     data     = {"curr_user": user}
-    response = post("/onlinePool/addUserToPool", data)
+    response = post("/onlinePool/addToUserPool", data)
 
     if response.text == "success":
         print("Successfully added {} to pool".format(user))
     else:
         print("Failed to add {} to pool".format(user))
+
+def remove_user_from_pool(user):
+    data = {"curr_user": user}
+
+    response = post("/onlinePool/UserPoolToOffline", data)
+
+    if response.text == "success":
+        print("User '{0}' is now offline".format(user))
+    else:
+        print(response.text)
 
 def make_session(u1, u2, course):
     add_user_to_pool(u1)
@@ -41,7 +51,7 @@ def make_session(u1, u2, course):
     response = post("/onlinePool/pairUsers", data)
 
     if response.text != "NaN" and response.text != "something went wrong":
-        print("Paired session with {0} and {1} successfully built".format(u1, u2))
+        print("Paired session with {0} and {1} successfully built with session ID: {2}".format(u1, u2, response.text))
     else:
         print(response.text)
         sys.exit() # Cannot properly run tests if users aren't paired right
@@ -59,10 +69,9 @@ def get_partner(user):
     data = {"curr_user": user}
 
     response = post("/sessions/getPartner", data)
-    print(response.text)
     resobj   = json.loads(response.text)
 
-    if resobj["partner"]:
+    if "partner" in resobj:
         return int(resobj["partner"])
     else:
         print(resobj["err"])
@@ -85,6 +94,8 @@ class PartnerAPITests(unittest.TestCase):
         self.assertEqual(case_partner_2, user1)
 
         end_session(user1, user2, course)
+        remove_user_from_pool(user1)
+        remove_user_from_pool(user2)
     
     def test_get_partner_answer(self):
         user1   = 15
@@ -108,6 +119,8 @@ class PartnerAPITests(unittest.TestCase):
         response = post("/sessions/testInsertValues", data)
         resobj   = json.loads(response.text)
 
+        print(response.text)
+
         self.assertTrue(resobj["success"])
 
         # Run tests
@@ -117,10 +130,13 @@ class PartnerAPITests(unittest.TestCase):
         response1 = post("/sessions/getPartnerAnswerForProblem", data1)
         response2 = post("/sessions/getPartnerAnswerForProblem", data2)
 
-        if not response1["ans"]:
+        print(response1.text)
+        print(response2.text)
+
+        if "ans" not in response1:
             self.fail("Failed to get User 1's partner's answer: {0}".format(response1["err"]))
 
-        if not response2["ans"]:
+        if "ans" not in response2:
             self.fail("Failed to get User 2's partner's answer: {0}".format(response2["err"]))
         
         partner1Answer = float(response1["ans"])
