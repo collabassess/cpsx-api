@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var debug  = require('debug')('cpsx-api:server');
 
 var mysql = require('../lib/database').pool;
 

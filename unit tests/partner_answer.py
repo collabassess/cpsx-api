@@ -7,7 +7,7 @@ import unittest
 Testing behavior of '/sessions/getPartner' and '/sessions/getPartnerAnswerForProblem'
 
 1. Pair users 15 & 16
-2. Insert data for problem ID 'block-v1:TEST_COURSE_PLS_IGNORE+type@problem+block@001AA_COL_J1'
+2. Insert data for problem ID 'block-v1:CPSX+physand+2018S+type@problem+block@001AA_COL_J1'
 3. Verify that each user's partner is correct
 4. Calculate slope of line based on data inserted
 """
@@ -15,7 +15,7 @@ Testing behavior of '/sessions/getPartner' and '/sessions/getPartnerAnswerForPro
 BASE_URL = "http://ec2-54-156-197-224.compute-1.amazonaws.com"
 PORT     = 3050
 
-SHORT_COURSE_NAME  = "TEST_COURSE_PLS_IGNORE"
+SHORT_COURSE_NAME  = "CPSX+physand+2018S"
 SHORT_PROBLEM_NAME = "001AA_COL_J1"
 
 def build_url(uri):
