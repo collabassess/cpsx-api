@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=cpsx-api PORT=3050 node ./bin/www"
+    "dev": "DEBUG=cpsx-api:* PORT=3050 node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
