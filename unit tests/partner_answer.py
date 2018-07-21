@@ -18,6 +18,9 @@ PORT     = 3050
 SHORT_COURSE_NAME  = "CPSX+physand+2018S"
 SHORT_PROBLEM_NAME = "001AA_COL_J1"
 
+LONG_COURSE_NAME   = "course-v1:{}".format(SHORT_COURSE_NAME)
+LONG_PROBLEM_NAME  = "block-v1:{0}+type@problem+block@{1}".format(SHORT_COURSE_NAME, SHORT_PROBLEM_NAME) 
+
 def build_url(uri):
     return "{0}:{1}{2}".format(BASE_URL, PORT, uri)
 
@@ -89,9 +92,13 @@ class PartnerAPITests(unittest.TestCase):
         self.assertNotEqual(case_partner_1, -1)
         self.assertEqual(case_partner_1, user2)
 
+        print("Partner for {0}: {1}".format(user1, case_partner_1))
+
         case_partner_2 = get_partner(user2)
         self.assertNotEqual(case_partner_2, -1)
         self.assertEqual(case_partner_2, user1)
+
+        print("Partner for {0}: {1}".format(user2, case_partner_2))
 
         end_session(user1, user2, course)
         remove_user_from_pool(user1)
@@ -115,7 +122,7 @@ class PartnerAPITests(unittest.TestCase):
         x = 6.
 
         # Insert test dummy information
-        data     = {"user1": user1, "user2": user2, "ans1": m, "ans2": b, "course_id": course, "module_id": problem}
+        data     = {"user1": user1, "user2": user2, "ans1": m, "ans2": b, "course_id": LONG_COURSE_NAME, "module_id": LONG_PROBLEM_NAME}
         response = post("/sessions/testInsertValues", data)
         resobj   = json.loads(response.text)
 
