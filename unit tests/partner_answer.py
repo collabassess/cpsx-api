@@ -140,18 +140,23 @@ class PartnerAPITests(unittest.TestCase):
         print(response1.text)
         print(response2.text)
 
-        if "ans" not in response1:
+        resobj1 = json.loads(response1.text)
+        resobj2 = json.loads(response2.text)
+
+        if "ans" not in resobj1:
             self.fail("Failed to get User 1's partner's answer: {0}".format(response1["err"]))
 
-        if "ans" not in response2:
+        if "ans" not in resobj2:
             self.fail("Failed to get User 2's partner's answer: {0}".format(response2["err"]))
         
-        partner1Answer = float(response1["ans"])
-        partner2Answer = float(response2["ans"])
+        partner1Answer = float(resobj1["ans"])
+        partner2Answer = float(resobj2["ans"])
 
         self.assertEqual(m * x + partner1Answer, partner2Answer * x + b)
 
         end_session(user1, user2, course)
+        remove_user_from_pool(user1)
+        remove_user_from_pool(user2)
 
 if __name__ == "__main__":
     unittest.main()
