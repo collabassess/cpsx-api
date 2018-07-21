@@ -6,7 +6,7 @@ import unittest
 """
 Testing behavior of '/sessions/getPartner' and '/sessions/getPartnerAnswerForProblem'
 
-1. Pair users 15 & 16
+1. Pair users 22 & 23
 2. Insert data for problem ID 'block-v1:CPSX+physand+2018S+type@problem+block@001AA_COL_J1'
 3. Verify that each user's partner is correct
 4. Calculate slope of line based on data inserted
@@ -79,8 +79,8 @@ def get_partner(user):
 
 class PartnerAPITests(unittest.TestCase):
     def test_get_partner(self):
-        user1  = 15
-        user2  = 16
+        user1  = 22
+        user2  = 23
         course = "course-v1:{}".format(SHORT_COURSE_NAME)
 
         make_session(user1, user2, course)
@@ -98,8 +98,8 @@ class PartnerAPITests(unittest.TestCase):
         remove_user_from_pool(user2)
     
     def test_get_partner_answer(self):
-        user1   = 15
-        user2   = 16
+        user1   = 22
+        user2   = 23
         course  = "course-v1:{}".format(SHORT_COURSE_NAME)
         problem = "block-v1:{0}+type@problem+block@{1}".format(SHORT_COURSE_NAME, SHORT_PROBLEM_NAME)
 
