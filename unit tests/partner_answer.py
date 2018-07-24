@@ -1,7 +1,9 @@
-import requests
 import sys
+import copy
 import json
 import unittest
+
+import requests
 
 """
 Testing behavior of '/sessions/getPartner' and '/sessions/getPartnerAnswerForProblem'
@@ -157,6 +159,50 @@ class PartnerAPITests(unittest.TestCase):
         end_session(user1, user2, course)
         remove_user_from_pool(user1)
         remove_user_from_pool(user2)
+    
+    def test_fetch_user_from_cmap(self):
+        # Same setup as getPartnerAnswerForProblem
+        user1 = 22
+        user2 = 23
+        m     = 10
+        b     = 5
+
+        data     = {"user1": user1, "user2": user2, "ans1": m, "ans2": b, "course_id": LONG_COURSE_NAME, "module_id": LONG_PROBLEM_NAME}
+        response = post("/sessions/testInsertValues", data)
+        resobj   = json.loads(response.text)
+
+        print(response.text)
+        self.assertTrue(resobj["success"])
+
+        # Build cmap
+        state = {
+            "correct_map": {},
+            "student_answers": {}
+        }
+
+        state["correct_map"]["{}_2_1".format(SHORT_PROBLEM_NAME)] = {"thing": "stuff", "anotherThing": "moreStuff"}
+
+        state1 = copy.deepcopy(state)
+        state2 = copy.deepcopy(state)
+
+        state1["student_answers"]["{}_2_1".format(SHORT_PROBLEM_NAME)] = m
+        state2["student_answers"]["{}_2_1".format(SHORT_PROBLEM_NAME)] = b
+
+        # form requests
+        data1 = {"correct_map": json.dumps(state1), "problem_id": LONG_PROBLEM_NAME}
+        data2 = {"correct_map": json.dumps(state2), "problem_id": LONG_PROBLEM_NAME}
+
+        res1 = json.loads(post("/util/fetchUserFromCorrectMap", data1).text)
+        res2 = json.loads(post("/util/fetchUserFromCorrectMap", data2).text)
+
+        if "err" in res1:
+            self.fail(res1["err"])
+        
+        if "err" in res2:
+            self.fail(res2["err"])
+        
+        self.assertEqual(user1, res1["user"])
+        self.assertEqual(user2, res2["user"])
 
 if __name__ == "__main__":
     unittest.main()
