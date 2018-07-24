@@ -20,6 +20,23 @@ router.post("/getPartner", (req, res) => {
         });
 });
 
+router.post("/getUserAnswerForProblem", (req, res) => {
+    let currentUser = req.body.curr_user,
+        problemID  = req.problem_id,
+        retval      = {};
+    
+    SessionManager.getUserAnswerForProblem(currentUser, problemID)
+        .then(answer => {
+            retval.ans = answer;
+            res.send(JSON.stringify(retval));
+        })
+        .catch(err => {
+            debug(err);
+            retval.err = err;
+            res.send(JSON.stringify(retval)); 
+        });
+});
+
 router.post("/getPartnerAnswerForProblem", (req, res) => {
     let currentUser = req.body.curr_user,
         problemID   = req.body.problem_id,
