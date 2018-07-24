@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import copy
 import json
@@ -189,8 +190,8 @@ class PartnerAPITests(unittest.TestCase):
         state2["student_answers"]["{}_2_1".format(SHORT_PROBLEM_NAME)] = b
 
         # form requests
-        data1 = {"correct_map": json.dumps(state1), "problem_id": LONG_PROBLEM_NAME}
-        data2 = {"correct_map": json.dumps(state2), "problem_id": LONG_PROBLEM_NAME}
+        data1 = {"correct_map": json.dumps(state1, separators=(',', ':')), "problem_id": LONG_PROBLEM_NAME}
+        data2 = {"correct_map": json.dumps(state2, separators=(',', ':')), "problem_id": LONG_PROBLEM_NAME}
 
         res1 = json.loads(post("/util/fetchUserFromCorrectMap", data1).text)
         res2 = json.loads(post("/util/fetchUserFromCorrectMap", data2).text)

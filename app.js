@@ -29,7 +29,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/onlinePool', onlinePool);
 app.use('/sessions', sessions);
-app.user('/util', util);
+app.use('/util', util);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
