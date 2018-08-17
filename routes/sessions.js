@@ -4,6 +4,11 @@ const express = require("express"),
       
       SessionManager = require("../lib/sessionmanager");
 
+/**
+ * API CALL: /sessions/getPartner
+ * @param req {curr_user: [string of user ID]}
+ * @returns {object} {partner?: [string of partner ID, if found], err?: [Error message if applicable]}
+ */
 router.post("/getPartner", (req, res) => {
     let currentUser = req.body.curr_user,
         retval      = {};
@@ -22,7 +27,7 @@ router.post("/getPartner", (req, res) => {
 
 router.post("/getUserAnswerForProblem", (req, res) => {
     let currentUser = req.body.curr_user,
-        problemID  = req.problem_id,
+        problemID   = req.body.problem_id,
         retval      = {};
     
     SessionManager.getUserAnswerForProblem(currentUser, problemID)
