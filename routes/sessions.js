@@ -25,6 +25,11 @@ router.post("/getPartner", (req, res) => {
         });
 });
 
+/**
+ * API CALL: /sessions/getUserAnswerForProblem
+ * @param req {curr_user: [string of user ID], problem_id: [the module ID of the problem]}
+ * @returns {object} {ans?: [user's answer, if found], err?: [Error message if applicable]}
+ */
 router.post("/getUserAnswerForProblem", (req, res) => {
     let currentUser = req.body.curr_user,
         problemID   = req.body.problem_id,
@@ -42,6 +47,11 @@ router.post("/getUserAnswerForProblem", (req, res) => {
         });
 });
 
+/**
+ * API CALL: /sessions/getPartnerAnswerForProblem
+ * @param req {curr_user: [string of user ID], problem_id: [the module ID of the problem]}
+ * @returns {object} {ans?: [partner's answer, if found], err?: [Error message if applicable]}
+ */
 router.post("/getPartnerAnswerForProblem", (req, res) => {
     let currentUser = req.body.curr_user,
         problemID   = req.body.problem_id,
@@ -60,6 +70,9 @@ router.post("/getPartnerAnswerForProblem", (req, res) => {
         });
 });
 
+/**
+ * FOR TESTING PURPOSES ONLY
+ */
 router.post("/testInsertValues", (req, res) => {
     let user1    = req.body.user1,
         user2    = req.body.user2,

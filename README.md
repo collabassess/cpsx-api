@@ -1,10 +1,25 @@
 # CPSX API
 
-### This api is used along with the CPSXBlock in order to communicate with edx database and to manage dynamic partnering, dynamic cohorting and creating online pools for CPSXBlock.
+This API is used along with the [CPSXBlock](https://github.com/collabassess/CPSXblock) in order to communicate with openedx database and to manage dynamic partnering, dynamic cohorting, and creating online pools for the CPSXBlock.
 
-By default, it is served on url:3000/
+By default, it is served on `localhost:3000`.
 
-Currently, the avalaible functions are:
+## Installation
+1. `$ git clone` this repository
+2. `$ npm i`
+
+## Running the API
+If you are developing this API, it is recommended that you start up the server using `$ npm run dev`. This will run the server at `localhost:3050` and enable debug statements.
+
+Otherwise, start the server with `$ npm run start`. It is highly recommended that you run the API with a daemonized service provider, like [PM2](http://pm2.keymetrics.io/).
+
+## API Documentation
+The API is divided into three main sections:
+1. Online pool management, which handles all the users looking for partners and how to pair them
+2. Sessions management, which handles all current paired sessions
+3. User management, which handles extraneous user information like current room number.
+
+Unless otherwise specified, all API requests use HTTP `POST`.
 
 #### Inside onlinePool/
 1. <i><b><u>addToUserPool</b></u></i>:
